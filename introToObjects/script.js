@@ -255,8 +255,20 @@
 
 //            ADDING AND UPDATING PROPERTIES
 
+// const fitBitData = {
+//   totalSteps: 233232,
+//   totalMiles: 231.12,
+//   avgCaloriesBurns: 2342,
+//   workoutsThisWeek: '5 of 7',
+//   avgGoodSleep: '2:12'
+// }
 
+// // Updating properties:
+// fitBitData.workoutsThisWeek = '6 of 7';
+// fitBitData.totalMiles += 7.5;
 
+// // Adding a new property
+// fitBitData.hearStillBeating = true;
 
 
 
@@ -265,12 +277,28 @@
 
 
 
+// // make empty object so we can add into it
+// const userReviews = {}
+// s
+// // adding prop
+// userReviews['queenBee49'] = 4.0
+// // check if it added
+// console.log(userReviews); // {queenBee49: 4}
 
 
+// // updating
+// userReviews['queenBee49'] = 5
+// console.log(userReviews); // {queenBee49: 5}
 
 
 
+// // If we want to add 2 to queen be
+// userReviews['queenBee49'] += 2
+// console.log(userReviews); // {queenBee49: 7}
 
+// // increments by 1 with ++
+// userReviews.queenBee49++
+// console.log(userReviews); // {queenBee49: 8}
 
 
 
@@ -309,23 +337,70 @@
 
 
 
+//              NESTED ARRAYS & OBJECTS
 
 
 
+// // OBJECTS
+// const student = {
+//   firstName: 'David',
+//   lastName: 'Jones',
+//   strengths: ['Music', 'Art'],
+//   exams: {
+//     midterm: 92,
+//     final: 88
+//   }
+// }
 
 
 
 
+// // ARRAYS
+// const shoppingCart = [
+//   {
+//     product: 'Jenga Classic',
+//     price: 6.88,
+//     quantity: 1
+//   },
+//   {
+//     product: 'Echo Dot',
+//     price: 29.99,
+//     quantity: 3
+//   },
+//   {
+//     product: 'Fire Stick',
+//     price: 39.99,
+//     quantity: 2
+//   }
+// ]
 
+// // Each element in array has an object
 
 
 
 
 
 
+// const game = {
+//   player1: {
+//     username: 'Blue',
+//     playingAs: 'X'
+//   },
+//   player2: {
+//     username: 'Muffins',
+//     playingAs: '0'
+//   },
+//   board: [
+//     ['0', null, 'X'],
+//     ['X', '0', 'X'],
+//     [null, '0', 'X']
+//   ]
+// }
 
 
 
+//           OBJECTS AND REFERNCE TYPES
+// You cant reassign the obj but you can mutate/changge it but dont reassign it to another value with =
 
 
 
@@ -366,19 +441,34 @@
 
 
 
+// //               ARRAY/OBJECT EQUALITY
+// // 1 === 1
+// // 1 == 1
 
 
 
 
 
 
+// let nums = [1, 2, 3]
+// let myst = [1, 2, 3]
 
 
+// // not same reference and variable
+// console.log(nums === myst); // false
+// console.log(nums == myst); // false
 
 
+// // JS stores each var or whatever in its memory (like an id to each var)
+// // nums -> 123838388439
+// // myst -> 888340231123
 
 
 
+// // To let it be the same we have to do this
+// let moreNums = nums // now it has a ref to the same memory address/id
+// console.log(moreNums === nums); // true
+// console.log(moreNums == nums); // true
 
 
 
@@ -387,454 +477,25 @@
 
 
 
+// const user = {
+//   username: 'CherryGarcia8',
+//   email: 'Garcia@gmail.com',
+//   notification: []
+// }
 
+// // If we wanted to print something out, if notification was empty it would NOT work to do this, each time we type in a diff array its a new place in memory they look the same but they have diff locaiton / id in memory
+// // if (user.notification === []); // false
 
 
+// // {a: 1} === {a: 1} does not equal the same unless they are referring to the same place in memory
 
 
+// let data1 = { a: 1 }
 
+// let data2 = data1
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// // now they are reffering to the same place in memory
+// console.log(data1 === data2); // true
 
 
 
