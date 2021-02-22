@@ -680,15 +680,319 @@
  *
  *              FOR... OF INTRO
  *
+ * Not supported in IE
+ */
+
+
+
+// // for...of loop - A nice and easy way of iterating over arrays
+
+
+
+// let subreddits = ['soccer', 'popheads', 'cringe', 'books']
+
+
+// // for of loop works with anything that is iterable
+// for (let sub of subreddits) {
+//   console.log(sub);
+//   // soccer
+//   // popheads
+//   // cringe
+//   // books
+// }
+
+
+
+// // a STRING is also iterable
+// for (let char of 'cockadoodledoo') {
+//   console.log(char.toUpperCase());
+//   // c
+//   // o
+//   // c
+//   // k
+//   // a
+//   // d
+//   // o
+//   // o
+//   // d
+//   // l
+//   // e
+//   // d
+//   // o
+//   // o
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// //             NORE FOR OF
+
+// const magicSquare = [
+//   [12, 32, 24],
+//   [21, 37, 49],
+//   [9, 5, 1, 5]
+// ]
+
+
+// //               FOR LOOP
+// for (let i = 0; i < magicSquare.length; i++) {
+//   // loop again to get each row []
+//   let row = magicSquare[i];
+//   // reset it to 0 for each row
+//   let sum = 0;
+//   for (let j = 0; j < row.length; j++) {
+//     console.log(row[j]);
+//     sum += row[j]
+//   }
+//   console.log(`${row} added to ${sum}`);
+// }
+
+
+
+
+// //            FOR OF
+// for (let row of magicSquare) {
+//   console.log(row);
+//   let sum = 0;
+//   for (let num of row) {
+//     sum += num;
+//   }
+//   console.log(`${row} added to ${sum}`);
+// }
+// // MUCH SHORTER AND EASIER
+
+
+
+// // NOT TO OUR ADVANTAGE TO USE FOR...OF
+// // we're going to see when its not that good to use a for of loop and instead use a for() loop
+
+
+// let words1 = ['mail', 'milk', 'bath']
+// let words2 = ['box', 'shake', 'tub']
+
+
+// for (let i = 0; i < words1.length; i++) {
+//   console.log(words1[i], words2[i]);
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//               FOR..OF IN OBJECTS
+
+// WE NEED TO USE OBJECT.KEYS/VALUES TO GAIN ACCESS AND LOOP THROUGH ***OBJECTS***
+
+
+// const movieReviews = {
+//   Arrival: 9.5,
+//   Alien: 9,
+//   Amelie: 8,
+//   'In Bruges': 9,
+//   Amadeus: 10,
+//   'Kill Bill': 8,
+//   'Little Miss Sunshine': 8.5,
+//   Coraline: 7.5
+// }
+
+
+// // AN OBJECT IS NOT ITERABLE
+
+// // DOESNT WORK LOOPING OVER ENTIRE OBJECT
+// // for (let x of movieReviews) {
+// //   console.log(x); // Type Error movieReview isnt iterable
+// // }
+
+
+// // WE CAN LOOP THE KEYS IN THE OBJECT WITH FOR OF
+// // Object.keys(movieReviews) //  shows obj keys
+// // Object.values(movieReviews) //  shows obj vals
+
+// // WRONG WAY ITS NOT THIS
+// // movieReviews.keys // WRONG
+
+
+
+
+
+// // THE WAY WE CAN USE OBJECT.KEYS/VALUES with FOR OF
+// for (let movie of Object.keys(movieReviews)) {
+//   console.log(movie);// List of movie keys
+//   // to access the values do below
+//   console.log(movie, movieReviews[movie]); // Arrival 9.5
+// }
+
+
+
+// // ITERATE OVER THE VALUES INSTEAD
+// let ratings = Object.values(movieReviews)
+
+// let total = 0;
+// for (let r of ratings) {
+//   total += r;
+// }
+
+// let avg = total / ratings.length
+// console.log(avg); // 8.6875
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ *
+ *
+ *              FOR IN LOOPS
+ *
+ *  Used for Objects to loop over keys
+ *
+ *
  *
  */
 
 
 
+// We can loop through objects with For...in
 
 
 
+// const movieReviews = {
+//   Amadeus: 10,
+//   Arrival: 9.5,
+//   Alien: 9,
+//   Amelie: 8
+// }
 
+// for (let movie in movieReviews) {
+//   console.log(movie); // Amadeus Arrival ALien Amelie
+// }
 
 
 
@@ -698,299 +1002,33 @@
 
 
 
+const jeopardyWinnings = {
+  regularPlay: 2523233,
+  watsonChallenge: 300000,
+  tournamentOfChampions: 500000,
+  battleOfTheDecades: 100000
+}
 
 
 
+// for (let prop in jeopardyWinnings) {
+//   console.log(prop); // shows keys
+//   console.log(jeopardyWinnings[prop]); // shows/gets values
+// }
 
 
+let total = 0;
+for (let prop in jeopardyWinnings) {
+  console.log(total += jeopardyWinnings[prop]); // shows the all the total values combined
+}
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+for (let k in [88, 99, 77, 66]) {
+  console.log(k); // not that useful just gives us the number place its on 1 2 3 4 cause arrays keys are just the place number they are
+}
 
 
 
