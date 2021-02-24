@@ -347,20 +347,24 @@
 
 // Built-in method "return" values when we call them. We can store those values
 
-const yell = 'I will end you'.toUpperCase();
-yell; // "I WILL END YOU"
+// const yell = 'I will end you'.toUpperCase();
+// yell; // "I WILL END YOU"
 
 
-const idx = ['a', 'b', 'c'].indexOf('c');
-idx; //2
+// const idx = ['a', 'b', 'c'].indexOf('c');
+// idx; //2
 
 
 
 
 
 
+// const scream = 'hello'.toUpperCase();
+// scream; // has "<" in console cause its returning
+// // console.log(scream); // not returning
 
 
+// return values we can capture them in a var and we could pass them to another function... in the real wordl we dont really print much with the console, so we use return to return the value
 
 
 
@@ -369,9 +373,18 @@ idx; //2
 
 
 
+// // No Return
+// // our functions print values out, but do not return anything
+// function add(x, y) {
+//   console.log(x + y);
+// }
 
+// add(10, 20) // 30
 
+// // if we try storing that in a var we'll get undefined
+// const sun = add(10, 16)
 
+// sum; // undefined
 
 
 
@@ -382,11 +395,22 @@ idx; //2
 
 
 
+// // WITH RETRUNS.. since we used return now DONT GET UNDEFINED WHEN WE STORE IN A VAR
+// function addd(x, y) {
+//   return x + y; // RETURN
+// }
 
+// // since its returning we can add to a var
+// const sum = addd(10, 16);
+// sum; //26
 
+// const answer = addd(100, 200);
+// answer; // 3000
 
 
 
+// // WE CAN ONLY RETURN 1 THING FROM A FUNCTION
+// // IF WE WANTED TO RETURN X AND Y ABOVE WE CAN PUT IT AN ARRAY LIKE THIS return [x, y]
 
 
 
@@ -408,19 +432,50 @@ idx; //2
 
 
 
+//              RETURNING MULTIPLE VALUES
+// return statements end function execution AND specifies the value to be returned by that function
 
 
+// // for example where return ends the exectution
+// function square(x) {
+//   return x * x;
+//   console.log('ALL DONE');
+// }
+// square(4); // doesnt shows the console log cause its after the return
 
 
 
 
+// BUT we can use them in a if or for loop inside the functio cause of scope
 
 
+// function isPurple(c) {
+//   if (c.toLowerCase() === 'purple') {
+//     return true;
+//   }
+//   else {
+//     return false
+//   }
+// }
 
 
+// function isPurple(c) {
+//   // have to add return or else it'll say undefined
+//   return c.toLowerCase() === "purple" ? true : false
+// }
 
 
+// // HOW A RETURN WOULD STOP A FUNCTION NO MATTER WHERE ITS LOCATED IN THE FUNCTION
+// function containsPurp(arr) {
+//   for (let color of arr) {
+//     if (color === 'purple' || color === 'magenta') {
+//       return true
+//     }
+//   }
+//   return false
+// }
 
+// containsPurp(['green', 'blue', 'purple', 'red', 'magenta']) // true
 
 
 
@@ -472,56 +527,7 @@ idx; //2
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//               P R A C T I C E
 
 
 
