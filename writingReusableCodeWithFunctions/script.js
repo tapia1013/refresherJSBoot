@@ -271,18 +271,27 @@
 
 
 
-const sum = (x, y) => console.log(x + y);
-sum(2, 7)
+// const sum = (x, y) => console.log(x + y);
+// sum(2, 7)
 
 
 
 
+// const thots = ['Vee', 'Victoria', 'Cakes', 'Towiah']
 
 
+// thots.forEach(thot => {
+//   console.log(`Hello, my name is ${thot} and I am a thot!`);
+// })
 
 
 
 
+// Where order does matter
+// function divide(a, b) {
+//   console.log(a / b);
+// }
+// divide(4, 5);
 
 
 
@@ -334,30 +343,16 @@ sum(2, 7)
 
 
 
+//                    R E T U R N
 
+// Built-in method "return" values when we call them. We can store those values
 
+const yell = 'I will end you'.toUpperCase();
+yell; // "I WILL END YOU"
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+const idx = ['a', 'b', 'c'].indexOf('c');
+idx; //2
 
 
 
