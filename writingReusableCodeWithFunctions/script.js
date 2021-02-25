@@ -531,20 +531,85 @@
 
 
 
+// PASSWORD VALIDATION
 
+// MY ANSWER
+// function isValidPassword(pw, usr) {
+//   if (pw.length >= 8 && pw.includes(' ') && pw == usr) {
+//     return true
+//   }
+//   return false
+// }
+// isValidPassword('adsas', 'maybe')
 
 
+// // RIGHT ANSWER
+// function isValidPassword(pw, usr) {
+//   if (pw.length < 8) {
+//     return false
+//   }
+//   if (pw.indexOf(' ') !== -1) {
+//     return false
+//   }
+//   if (pw.indexOf(usr) !== -1) {
+//     return false
+//   }
+//   return true
+// }
+// isValidPassword('sadsaasds', 'asdas') // true
+// isValidPassword('dasds das', 'dsrw') // false
+// isValidPassword('wtfisthis', 'wtfisthis') // false
 
 
 
 
+// ANOTHER COLT STEELE WAY
 
+// function isValidPassword(pw, usr) {
+//   if (pw.length < 8 || pw.indexOf(' ') !== -1 || pw.indexOf(usr) !== -1) {
+//     return false
+//   }
+//   return true
+// }
 
 
 
+// KINDA MORE DRY AND ADVANCED WAY
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+/**
+ *
+ * WHEN WE USE INDEXOF() IT'LL GIVE US -1 IF THAT CHARACTER IS NOT IN THERE
+ *
+ *
+ * SO IF THE CHARCHATER WE'RE LOOKING FOR WITH INDEXOF() IS NOT IN THE () IT WILL GIVE US/RETURN US A -1
+ *
+ *
+ * CHECK IF EMPTY SPACE
+ * index(' ') !== notEqual -1
+ *
+ * so if the empty space is !notEqual to -1 its true then
+ *
+ * 'ad s'.indexOf('') // it will give us the index of where its at which here is 2
+ *
+ * 'monki e'.indexOf(' ') // 5
+ *
+ * 'monkie'.indexOF(' ') //-1 cause not here
+ *
+ *
+*/
 
+// function isValidPassword(pw, usr) {
+//   // set it to a varaible
+//   const tooShort = pw.length < 8;
+//   const hasSpace = pw.indexOf(' ') !== -1;
+//   const tooSimilar = pw.indexOf(usr) !== -1;
 
+//   if (tooShort || hasSpace || tooSimilar) {
+//     return false;
+//   }
 
+//   return true;
+// };
 
 
 
@@ -560,19 +625,56 @@
 
 
 
+//         AVERAGE PRACTICE
+// Write a func to find the avg val in a arr of nums
+// avg([0,50]) // 25
 
+// function avg(arr) {
+//   let total = 0;
+//   // loop over each num
+//   for (let num of arr) {
+//     //add them togetger... take num and add to total
+//     total += num
+//   }
+//   // divide by number of nums
+//   let res = total / arr.length;
+//   return res
+// }
 
 
 
 
+// function average(arr) {
+//   let tot = 0;
+//   for (let num of arr) {
+//     tot += num
+//   }
+//   let results = tot / arr.length;
+//   return results;
+// }
 
 
 
 
+// function a(arr) {
+//   let totals = 0;
+//   for (let nums of arr) {
+//     totals += nums
+//   }
+//   let res = totals / arr.length;
+//   return res;
+// }
 
 
 
 
+// const avg = (arr1) => {
+//   let total = 0;
+//   for (let num of arr1) {
+//     total += num
+//   }
+//   return total / arr1.length
+// }
 
 
 
@@ -583,28 +685,76 @@
 
 
 
+//           PRACTICE PANGRAM
+// A pangram is a sentence that contains every letter of the alphabet, like:
+// "The quick brown fox jumps over the lazy dog"
 
+// Write a function called isPangram, which checks to see if a given sentence contains everyletter of the alphabet
 
 
+// Mine and WRONG LOL
+// function isPangram(p) {
+//   let checker = 'abcdefghijklmnopqrstuvwxyz';
 
+//   if (p.indexOf(checker)) {
+//     return true
+//   }
+//   return false
 
+// }
 
 
 
 
+// COLT STEELE
+// function isPangram(sentence) {
+//   let lowerCased = sentence.toLowerCase();
 
+//   // loop over sentence and check if character exist
+//   let checker = 'abcdefghijklmnopqrstuvwxyz';
 
+//   for (let char of checker) {
+//     // check if alphabet in loop
+//     // console.log(char);
 
+//     // check if its sentence so if 1 is not in sentence return false
+//     if (lowerCased.indexOf(char) === -1) {
+//       return false
+//     }
+//   }
+//   return true
+// }
 
 
+// WITH INCLUDES
+// function isPangram(sentence) {
+//   let lowerCased = sentence.toLowerCase();
+//   let checker = 'abcdefghijklmnopqrstuvwxyz';
 
+//   for (let char of checker) {
+//     // DOES NOT lowercased.includes(char)
+//     if (!lowerCased.includes(char)) {
+//       return false
+//     }
+//   }
+//   return true
+// }
 
 
 
 
 
 
+// function inc(str) {
+//   let abc = 'abcdefghijklmnopqrstubwxyz';
 
+//   for (let char of abc) {
+//     if (!str.includes(char)) {
+//       return false
+//     }
+//   }
+//   return true
+// }
 
 
 
@@ -613,7 +763,17 @@
 
 
 
+// function isPangram(sent) {
+//   let sen = sent.toLowerCase();
+//   let abc = 'abcdefghijklmnopqrstubwxyz';
 
+//   for (char of abc) {
+//     if (!sen.includes(char)) {
+//       return false
+//     }
+//   }
+//   return true
+// }
 
 
 
@@ -621,7 +781,16 @@
 
 
 
+// function isVal(pw, usr) {
+//   let isTooShort = pw.length >= 8;
+//   let hasSpace = pw.indexOf(' ') !== -1;
+//   let same = pw.indexOf(usr) !== -1;
 
+//   if (isTooShort || hasSpace || same) {
+//     return false
+//   }
+//   return true
+// }
 
 
 
@@ -638,7 +807,17 @@
 
 
 
+// function isPangram(st) {
+//   let sent = st.toLowerCase();
+//   let abc = 'abcdefghijklmnopqrstuvwxyz';
 
+//   for (let char of abc) {
+//     if (!sent.includes(char)) {
+//       return false
+//     }
+//   }
+//   return true
+// }
 
 
 
@@ -658,12 +837,22 @@
 
 
 
+// function getCard() {
+//   const val = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
 
+//   const valIdx = Math.floor(Math.random() * val.length)
+//   const value = val[valIdx]
 
 
+//   const suits = ['clubs', 'spades', 'hearts', 'diamonds'];
+//   const suitIdx = Math.floor(Math.random() * suits.length)
+//   const suit = suits[suitIdx]
 
+//   // console.log(value, suit);
 
+//   return { value, suit }
 
+// }
 
 
 
@@ -673,17 +862,52 @@
 
 
 
+// ANOTHER WAY
 
+// function pick(arr) {
+//   const idx = Math.floor(Math.random() * arr.length);
 
+//   return arr[idx]
+// }
 
+// function getCard() {
+//   const values = [
+//     '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'
+//   ];
 
+//   const value = pick(values);
 
+//   const suits = ['clubs', 'spades', 'hearts', 'diamonds'];
+//   const suit = pick(suits)
 
+//   return { value, suit }
+// }
 
 
 
 
 
+
+
+
+
+
+
+// function pick(arr) {
+//   const idx = Math.floor(Math.random() * arr.length);
+
+//   return arr[idx]
+// }
+
+// function getCard() {
+//   const values = [
+//     '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'
+//   ];
+
+//   const suits = ['clubs', 'spades', 'hearts', 'diamonds'];
+
+//   return { value: pick(values), suit: pick(suits) }
+// }
 
 
 
