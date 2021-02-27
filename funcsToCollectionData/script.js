@@ -945,14 +945,24 @@
 
 //            EVERY AND SOME
 
+// tests whether all elements in the array pass the provided function. It returs a Boolean value
+
+const words = ['dog', 'dig', 'log', 'bag', 'wag']
+
+// checks if words are 3 index long
+words.every(word => {
+  return word.length === 3;
+}) // true
+
+// checks if every index starts with d
+words.every(word => word[0] === 'd') // false
 
 
-
-
-
-
-
-
+// checks if EVERY last letter ends with 'g' 
+words.every(w => {
+  let last_letter = w[w.length - 1];
+  return last_letter === 'g'
+}) // true
 
 
 
