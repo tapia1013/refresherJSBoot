@@ -613,28 +613,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // // //                  ARRAY.FIND()
 // // // returns the value of the first element in the array that satisfies the provided testing function
 
@@ -709,15 +687,6 @@
 // ))
 // //{title: "Good Omens", authors: Array(2), rating: 4.25}
 // console.log(gB1);
-
-
-
-
-
-
-
-
-
 
 
 
@@ -974,6 +943,9 @@ words.every(w => {
 
 
 
+
+
+// lol
 
 
 
