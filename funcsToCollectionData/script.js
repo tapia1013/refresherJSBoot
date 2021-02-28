@@ -209,13 +209,6 @@
 
 
 
-
-
-
-
-
-
-
 // //                     MAP
 // // CREATES A NEW ARRAY with the results of calling a callback on every element in the array
 
@@ -378,14 +371,6 @@
 
 
 
-
-
-
-
-
-
-
-
 // //               ARROW FUNCTION () => {}
 
 
@@ -419,8 +404,6 @@
 // const greet = () => {
 //   console.log('HI');
 // }
-
-
 
 
 
@@ -593,26 +576,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // // //                  ARRAY.FIND()
 // // // returns the value of the first element in the array that satisfies the provided testing function
 
@@ -687,21 +650,6 @@
 // ))
 // //{title: "Good Omens", authors: Array(2), rating: 4.25}
 // console.log(gB1);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -912,30 +860,33 @@
 
 
 
-//            EVERY AND SOME
-
-// tests whether all elements in the array pass the provided function. It returs a Boolean value
-
-const words = ['dog', 'dig', 'log', 'bag', 'wag']
-
-// checks if words are 3 index long
-words.every(word => {
-  return word.length === 3;
-}) // true
-
-// checks if every index starts with d
-words.every(word => word[0] === 'd') // false
-
-
-// checks if EVERY last letter ends with 'g' 
-words.every(w => {
-  let last_letter = w[w.length - 1];
-  return last_letter === 'g'
-}) // true
+// //                EVERY AND SOME
 
 
 
 
+// // // EVERY - tests whether all elements in the array pass the provided function. It returs a Boolean value... it checks each letter index count
+
+// // const words = ['dog', 'dig', 'log', 'bag', 'wag']
+
+
+// // // checks if words are 3 index long
+// // words.every(word => {
+// //   return word.length === 3;
+// // }) // true
+
+
+
+// // // checks if every word index starts with d
+// // words.every(word => word[0] === 'd') // false
+
+
+
+// // // checks if EVERY last letter ends with 'g' 
+// // const allEndInG = words.every(word => {
+// //   let last = word.length - 1;
+// //   return word[last] === 'g'
+// // }) // true
 
 
 
@@ -945,7 +896,355 @@ words.every(w => {
 
 
 
-// lol
+
+
+
+// // SOME -  similar to every(), but returns true if any of the elements pass the test function
+
+
+
+// // const words = ['dog', 'jello', 'log', 'cupcake', 'bag', 'wag']
+
+
+
+// // // Are there any words longer than 4 chars
+// // const isGreaterThan4 = words.some(word => {
+// //   // returns if word[index] greater than 4 length
+// //   return word.length > 4;
+// // })
+// // console.log(isGreaterThan4); // true
+
+
+
+// // // Do any words start with 'Z'
+// // const startWithZ = words.some(word => word[0] === 'z')
+// // console.log(startWithZ); // false
+
+
+// // // Do any words contain 'cake'
+// // const cake = words.some(w => w.includes('cake'))
+// // console.log(cake); // true
+
+
+
+
+
+
+// // const words = ['dog', 'dig', 'log', 'bag', 'wag']
+
+// // //            EVERY() EXAMPLE
+// // const all3Lets = words.every(word => word.lemgth === 3)
+
+// // const allEndInG = words.every(word => {
+// //   const last = word.length - 1;
+// //   return word[last] === 'g'
+// // })
+
+
+
+
+// // //           SOME() EXAMPLE
+// // const someStartD = words.some(word => word[0] === 'd')
+// // // if SOME not all but some start with d return true
+// // console.log(someStartD); // true
+
+// // // every
+// // const everyStartD = words.every(word => word[0] === 'd')
+// // console.log(everyStartD); // false
+
+
+
+
+
+
+// const books = [
+//   {
+//     title: 'Good Omens',
+//     authors: ['Terry Pratchett', 'Neil Gaiman'],
+//     rating: 4.25,
+//     genres: ['fiction']
+//   },
+//   {
+//     title: 'Bone: The Complete Edition',
+//     authors: ['Jeff Smith'],
+//     rating: 4.42,
+//     genres: ['fantasy', 'epic']
+//   },
+//   {
+//     title: 'American Gods',
+//     authors: ['Neil Gaiman'],
+//     rating: 4.11,
+//     genres: ['fiction', 'fantasy']
+//   },
+//   {
+//     title: 'A Gentleman in Moscow',
+//     authors: ['Amor Towles'],
+//     rating: 4.36,
+//     genres: ['drama']
+//   }
+// ]
+
+
+// // check to see if all the books in the array has more than 3.5 rating
+// const allGoodBooks = books.every(book => book.rating > 3.5)
+// console.log(allGoodBooks); // true
+
+
+// // check to see if SOME books have 2 authors
+// const any2 = books.some(book => book.authors.length === 2)
+// console.log(any2); // true
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//                REVISTINGSORT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
