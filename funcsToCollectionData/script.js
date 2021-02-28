@@ -1040,40 +1040,99 @@
 
 
 
-//                REVISTINGSORT
+// //                REVISTING SORT()
 
+// const prices = [400.50, 3000, 99.99, 45.99, 12.00, 9500]
 
 
+// // // This sorts by first index only not very useful
+// // prices.sort(); // [12, 35.99, 400.50, 9500, 99.99]
 
 
+// // // we have to sort with a callback function a - b is from lowest to highest
+// // prices.sort((a, b) => a - b) // [12, 45.99, 99.99, 400.50, 3000, 9500]
 
+// // // same callback func but high to lowest with b - a
+// // prices.sort((a, b) => b - a); // [9500, 3000, 400.50, 99.99, 45.99, 12]
 
 
 
 
 
+// //  SORT PART 2
+// // arr.sort(compareFunc(a,b))
 
+// // If compareFunc(a,b) returns less than 0
+// //    sort a before b
 
+// // If compareFunc(a,b) returns 0
+// //    leave a and b unchanged with respect to eachother
 
+// // If compareFunc(a,b) returns greater than 0
+// //    sort b before a
 
 
 
+// //   ********* .SORT MUTATES ARRAY *********
+// //*** WE USE .SLICE() SO IT MAKES A COPY ****
 
+// // Ascending - it basically subtracts and if its a - b then the lowest number would move or stay in position a
+// const ascSort = prices.slice().sort((a, b) => a - b)
+// console.log(ascSort);
 
 
 
+// // Descending - reverse of ascending if b - a returns a POSITIVE NUM then the highest number goes first
+// const descSort = prices.slice().sort((a, b) => b - a)
 
 
 
 
 
 
+// //      **** ADVANCED SORT WITH ARR OBJ ****
 
+// const books = [
+//   {
+//     title: 'Good Omens',
+//     authors: ['Terry Pratchett', 'Neil Gaiman'],
+//     rating: 4.25,
+//     genres: ['fiction']
+//   },
+//   {
+//     title: 'Bone: The Complete Edition',
+//     authors: ['Jeff Smith'],
+//     rating: 4.42,
+//     genres: ['fantasy', 'epic']
+//   },
+//   {
+//     title: 'American Gods',
+//     authors: ['Neil Gaiman'],
+//     rating: 4.11,
+//     genres: ['fiction', 'fantasy']
+//   },
+//   {
+//     title: 'A Gentleman in Moscow',
+//     authors: ['Amor Towles'],
+//     rating: 4.36,
+//     genres: ['drama']
+//   }
+// ]
 
 
+// // we cant compare obj to another obj so we do this
+// // SO WE COMPARE OFF OF RATINGS
+// // SLICE() MAKES A COPY OF BOOKS
 
+// // // Ascending
+// const books1 = books.slice().sort((a, b) => a.rating - b.rating);
+// // original books arr mutated but it shows lowest rating book to highest
+// console.log(books1);
 
 
+// // Descending
+// const books2 = books.slice().sort((a, b) => b.rating - a.rating)
+// console.log(books2);
 
 
 
@@ -1114,23 +1173,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//                    REDUCE()
 
 
 
