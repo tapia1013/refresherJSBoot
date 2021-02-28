@@ -1173,19 +1173,35 @@
 
 
 
-//                    REDUCE()
+//                   REDUCE()
 
+// Reduce() - executes a reducer function on each element of the array resulting in a single value. 
+// Basically adds all numbers and returns the reduce number
 
 
+// 3 + 5 = 8 ... 8 moves to accum
+// 8 + 7 = 15 ... 15 is now accum
+// 15 + 9 = 24 ... 24 is now accum
+// 24 + 11 = 35 so now it spitsout/returns accum/35
 
 
+// [3, 5, 7, 9, 11].reduce((acc, curVal) => {
+//   return acc + curVal
+// }) // returns 35
 
 
 
 
 
 
+// const nums = [3, 4, 5, 6, 7]
 
+// // we want to multiply and get reduces num
+// const product = nums.reduce((total, currentVal) => {
+//   return total * currentVal;
+// })
+// // shorter way 3x4x5x6x7 = 2520
+// console.log(product); // 2520
 
 
 
@@ -1203,24 +1219,64 @@
 
 
 
+//                REDUCE() PART 2
+// we can do other things with reduce like finding the max value in an array
 
 
 
 
+// // Finding max val
+// let grades = [89, 96, 77, 62, 93, 81, 99, 73]
 
 
+// // find highest number
+// const topScore = grades.reduce((max, currVal) => {
+//   if (currVal > max) return currVal;
+//   return max;
+// })
+// console.log(topScore); // 99
 
+// // Shorter way
+// const topScore2 = grades.reduce((max, currVal) => {
+//   return Math.max(max, currVal)
+// })
+// console.log(topScore2); // 99
 
 
 
 
 
+// const grades = [87, 64, 96, 92, 88, 99, 73, 70, 64]
 
 
+// // // WITH IF STATEMENT
+// // const maxGrade = grades.reduce((max, currVal) => {
+// //   if (currVal > max) return currVal;
+// //   return max;
+// // })
+// // console.log(maxGrade); // 99
 
+// // // max        currVal     return
+// // // 87            64          87
+// // // 87            96          96
+// // // 96            88          96
+// // // 96            99          99
+// // // 99            73          99
+// // // etc... till 99 returns cause its highest number
 
 
+// // WITH MATH.MAX() ANOTHER WAY
+// const maxGrade = grades.reduce((max, currVal) => {
+//   // returns max number with Math.max()
+//   return Math.max(max, currVal)
+// })
+// console.log(maxGrade); // 9
 
+// // Get lowest grade
+// const minGrade = grades.reduce((min, currVal) => {
+//   return Math.min(min, currVal)
+// });
+// console.log(minGrade); // 64
 
 
 
@@ -1230,10 +1286,18 @@
 
 
 
+// // WHEN WE USED REDUCE WE CAN SET AN INITAL VALUE AS A SECOND ARGUMENT TO THE REDUCE(() => {}, InitialVal)
 
 
+// [4, 5, 6, 7, 8].reduce((accum, currVal) => {
+//   return accum + currVal;
+// }) // RETURNS: 30
 
 
+// // STARTS OFF WITH 100 cause we set it as the intial value or starting point and adds on from there instead of STARTING FROM 4 IT STARTS FROM 100 THEN 100 + 4 ETC...
+// [4, 5, 6, 7, 8].reduce((accum, currVal) => {
+//   return accum + currVal
+// }, 100) // RETURNS: 130
 
 
 
@@ -1246,19 +1310,52 @@
 
 
 
+//             REDUCE() PART 3
 
 
+// TALLYING ... OBJECTS
 
+const votes = ['y', 'y', 'n', 'y', 'n', 'y', 'n', 'y', 'n', 'n', 'y', 'y']
 
 
+// initial value is  {}
+// add into object with whatever key there is
+// add y to {}
+// check if theres y.. there is to y increments: {y:2}
+// checks again and theres no Y but N  yes so adds N to object {y:2, n: 1}
 
+// {
+//   y: 12,
+//   n: 8
+// }
 
 
+//                            accum, currVal
+const results = votes.reduce((tally, val) => {
+  // if we already have that key in the obj we're going to just increment
+  if (tally[val]) { tally[val]++ }
+  // if theres no tally of N or Y add 1
+  else { tally[val] = 1 }
+  return tally
+}) // {y:7, n:6}
 
+// {} starts off
+// {y: 1} skips if() but runs else cause its empty
+// {y:2} runs if cause its another y
+// {y:2, n:1} skips if() cause theres no n so it inserts n into the obj and adds 1 to it
+// {y:3, n:1}  another y so increments y
+// {y:3, n:2}  another n so increments n
 
 
 
 
+// //                           accum, currVal
+// const tally = votes.reduce((tally, vote) => {
+//   // console.log(tally); // {y:1} then keeps adding loop
+//   // console.log(tally[vote]); // 1, then keeps looping
+//   tally[vote] = (tally[vote] || 0) + 1;
+//   return tally;
+// }, {}) // {y:7, n:5}
 
 
 
@@ -1267,7 +1364,15 @@
 
 
 
+// SHORTER WAY if tally or val exists or doesnt we'll initiallize it to 1
+const results2 = votes.reduce((tally, val) => {
+  // tally[ofVal] or 0
+  tally[val] = (tally[val] || 0) + 1;
 
+  // steps
+  // tally[val] = 1 + 1 if there is a tally or key
+  return tally
+}, {})
 
 
 
@@ -1281,20 +1386,60 @@
 
 
 
+const books = [
+  {
+    title: 'Good Omens',
+    authors: ['Terry Pratchett', 'Neil Gaiman'],
+    rating: 4.25,
+    genres: ['fiction']
+  },
+  {
+    title: 'Bone: The Complete Edition',
+    authors: ['Jeff Smith'],
+    rating: 3.42,
+    genres: ['fantasy', 'epic']
+  },
+  {
+    title: 'American Gods',
+    authors: ['Neil Gaiman'],
+    rating: 4.11,
+    genres: ['fiction', 'fantasy']
+  },
+  {
+    title: 'A Gentleman in Moscow',
+    authors: ['Amor Towles'],
+    rating: 2.18,
+    genres: ['drama']
+  }
+]
 
 
 
 
+// GROUP ALL OF BOOKS IN A NEW OBJECT AND GROUP THEM BY RATING       GOAL
+// {
+//   2 star rating will be in a array
+//   2: [
 
+//   ],
+//   3 star book rating will be here
+//   3: [
 
+//   ]
+// }
 
 
+books.reduce((groupedB, book) => {
+  // get rating from book and elemenate .
+  const key = Math.floor(book.rating)
 
+  // check and if not make empty array
+  if (!groupedB[key]) groupedB[key] = []
+  // we also want to push in
+  groupedB[key].push(book);
 
-
-
-
-
+  return groupedB;
+}, {})
 
 
 
