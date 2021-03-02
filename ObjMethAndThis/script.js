@@ -350,6 +350,13 @@
 
 
 
+
+
+
+
+
+
+
 /**
  *
  *
@@ -397,137 +404,269 @@
 
 
 
+// //       USING "THIS" in methods
+// // Use the keyword "this" to access other props on the same object
+// const person2 = {
+//   first: 'Robert',
+//   last: 'Herjavec',
+//   fullName() {
+//     return `${this.first} ${last}`
+//   }
+// }
+// person2.fullName() // "Robert Herjavec"
+// person2.last = "Plant";
+// // last name was updated
+// person.fullName(); // "Robert Plant"
 
 
 
-//       USING "THIS" in methods
-const person = {
-  first: 'Cherilyn',
-  last: 'Sark',
-  nickName: 'Cher',
-  fullName() {
-    // we can use 'this' to refer to whatevers inside in this scope object
-    // console.log(this.first); // Cherilyn
 
-    console.log(`${this.first} ${this.last} AKA ${this.nickName}`);
+// const person = {
+//   first: 'Cherilyn',
+//   last: 'Sark',
+//   nickName: 'Cher',
+//   fullName() {
+//     // we can use 'this' to refer to whatevers inside in this scope object
+//     // console.log(this.first); // Cherilyn
+
+
+//     // we can destructure "this", so we wont have to use "this.first" or "this.last"
+//     const { first, last, nickName } = this;
+
+
+//     return `${first} ${last} AKA ${nickName}`
+//   },
+//   // we could also add another method to the object and call a diff method calling "this"
+//   printBio() {
+
+//     // get fullName from fullName and print something else
+//     const fullName = this.fullName()
+
+//     console.log(`${fullName} is a person`);
+
+//   }
+
+// }
+// // "this" in the person method refers to the object itself... so its not logging the window cause its in a different scope
+// person.fullName();
+
+
+// // If we call person.printBio() we'll get an error so we have to add this. to fullName in printBio method
+// person.printBio() //Cherilyn Sark AKA Cher is a person
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// //             THIS: invocation Context
+// // The value of "this" depends on the invocation context of the function it is used in.
+// // The function will change depending on how the function is actually executed NOT JUST WHERE YOU WROTE IT
+// /**
+//  * 
+//  *           IMPORTANT 
+//  * 
+//  * 
+//  * "THIS" WILL ALWAYS BE SET TO WHATEVER IS IN THE LEFT
+//  *  
+//  *  person.printBio() // "this" is set to person
+//  * 
+//  *  cookies.cook() // "this" is set to cookies
+//  * 
+//  * 
+//  * 
+//  *     IF THERES NOTHING TO THE LEFT, "THIS" WILL BE SET TO THE WINDOW GLOBAL EXECUTION SCOPE
+//  * 
+//  * 
+//  * 
+//  *   WITH ARROW FUNCTIONS "THIS" IS A BIT DIFFERENT
+//  * 
+//  *      ARROW() => {} DONT GET THEIR OWN VERSION OF "THIS"
+//  * 
+//  *    with arrows we usually use .bind() with it
+//  * 
+//  * 
+//  * 
+//  * 
+//  * *****/
+
+
+// const person = {
+//   first: 'Poop',
+//   last: 'Bear',
+//   nickName: 'Poo',
+//   fullName() {
+//     // In a method, "this" refers to the object the method LIVES in:
+//     const { first, last, nickName } = this;
+//     return `${first} ${last} AKA ${nickName}`
+//   },
+//   printBio() {
+//     // references the window when we call pirntBio from the const printBio = person.printBio
+//     console.log(this);
+
+//     const fullName = this.fullName();
+//     // fullName returns whats in fullName()
+//     return `${fullName} is a person!`;
+
+//   },
+//   // arrow "this" is set to window
+//   laugh: () => {
+//     console.log(this);
+//     console.log(`${this.nickName} says HAHAHA!`);
+//   }
+// }
+// person.printBio()
+
+
+
+// //                    GLOBAL
+// // // HOW WE CAN CHANGE THE VALUE OF "THIS" is by making a reference to the bio
+// // const printBio = person.printBio;
+// // // // printBio is not a function
+// // printBio;
+
+// //                    OBJECT
+// // BUT WE DONT STORE IN A VARIABLE AND JUST WRITE IT NORAMLLY THE "THIS" REFERENCES TO THE OBJECT
+// person.printBio(); // {first: "Poop", last: "Bear", nickName: "Poo", fullName: ƒ, printBio: ƒ}
+
+
+
+
+
+// //            ARROW FUNCTION "THIS"
+// // ARROW() =>{} DONT GET THEIR OWN VERSION OF "THIS"
+
+// // if we call laugh we will see "this" pointing to global and "this" being undefined in the says HAHAHA!
+// person.laugh()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//               ANNOYING DEMO
+// SINCE ARROW FUNCTIONS DONT HAVE THEIR OWN "THIS" IT JUST RELIES ON THE THIS WE HAVE FROM START()
+// SOMETIMES ARROW FUNCTIONS ARE BETTER TO USE CAUSE WE DONT WANT A NEW "THIS" 
+// BUT ON THE OTHER HAND ARROW FUNCTIONS SUCK AS A REGULAR METHOD ON A OBJECT.
+
+// THIS IN ARROW DOESNT REFERENCES THE OBJECT BUT THE WINDOW
+
+
+const annoyer = {
+  phrases: [
+    "litterally",
+    "cray cray",
+    "I cant even",
+    "totes",
+    "YOLO",
+    "canot stop, wont stop"
+  ],
+  pickPhrase() {
+    const { phrases } = this;
+    const idx = Math.floor(Math.random() * phrases.length)
+
+    // return to access
+    return phrases[idx]
+
+  },
+  // starts phrases
+  start() {
+    // console.log(this.pickPhrase());
+
+    // store "this" in a var so we can have access, not IDEAL
+    // const that = this;
+
+    // HAVE PROBLEMS WITH "THIS"
+    // setInterval(function () {
+    //   // console.log(this);
+    //   // console.log(that);
+    //   // console.log(that.pickPhrase());
+    // }, 3000)
+
+
+    // ARROW FUNCTIONS AVOID "THIS" PROBLEM... ARROWS DONT HAVE THEIR OWN "THIS"
+    this.timerId = setInterval(() => {
+      console.log(this.pickPhrase());
+    }, 3000)
+  },
+  // stops annoyer
+  stop() {
+    // CLEAR INTERVALS STOPS THE SETINTERVAL but we need an ID
+    clearInterval(this.timerId)
+
+    console.log("PHEW THANKS ITS NOW OVER!");
   }
 }
-// "this" in the person method refers to the object itself... so its not logging the window cause its in a different scope
-person.fullName();
 
 
-// 3:11
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// setInterval(func, 3000)
 
 
 
