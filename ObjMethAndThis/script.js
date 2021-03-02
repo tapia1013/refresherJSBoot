@@ -598,6 +598,62 @@
 
 
 
+// //               ANNOYING DEMO
+// // SINCE ARROW FUNCTIONS DONT HAVE THEIR OWN "THIS" IT JUST RELIES ON THE THIS WE HAVE FROM START()
+// // SOMETIMES ARROW FUNCTIONS ARE BETTER TO USE CAUSE WE DONT WANT A NEW "THIS" 
+// // BUT ON THE OTHER HAND ARROW FUNCTIONS SUCK AS A REGULAR METHOD ON A OBJECT.
+
+// // THIS IN ARROW DOESNT REFERENCES THE OBJECT BUT THE WINDOW
+
+
+// const annoyer = {
+//   phrases: [
+//     "litterally",
+//     "cray cray",
+//     "I cant even",
+//     "totes",
+//     "YOLO",
+//     "canot stop, wont stop"
+//   ],
+//   pickPhrase() {
+//     const { phrases } = this;
+//     const idx = Math.floor(Math.random() * phrases.length)
+
+//     // return to access
+//     return phrases[idx]
+
+//   },
+//   // starts phrases
+//   start() {
+//     // console.log(this.pickPhrase());
+
+//     // store "this" in a var so we can have access, not IDEAL
+//     // const that = this;
+
+//     // HAVE PROBLEMS WITH "THIS"
+//     // setInterval(function () {
+//     //   // console.log(this);
+//     //   // console.log(that);
+//     //   // console.log(that.pickPhrase());
+//     // }, 3000)
+
+
+//     // ARROW FUNCTIONS AVOID "THIS" PROBLEM... ARROWS DONT HAVE THEIR OWN "THIS"
+//     this.timerId = setInterval(() => {
+//       console.log(this.pickPhrase());
+//     }, 3000)
+//   },
+//   // stops annoyer
+//   stop() {
+//     // CLEAR INTERVALS STOPS THE SETINTERVAL but we need an ID
+//     clearInterval(this.timerId)
+
+//     console.log("PHEW THANKS ITS NOW OVER!");
+//   }
+// }
+
+
+// // setInterval(func, 3000)
 
 
 
@@ -611,177 +667,246 @@
 
 
 
-//               ANNOYING DEMO
-// SINCE ARROW FUNCTIONS DONT HAVE THEIR OWN "THIS" IT JUST RELIES ON THE THIS WE HAVE FROM START()
-// SOMETIMES ARROW FUNCTIONS ARE BETTER TO USE CAUSE WE DONT WANT A NEW "THIS" 
-// BUT ON THE OTHER HAND ARROW FUNCTIONS SUCK AS A REGULAR METHOD ON A OBJECT.
-
-// THIS IN ARROW DOESNT REFERENCES THE OBJECT BUT THE WINDOW
 
 
-const annoyer = {
-  phrases: [
-    "litterally",
-    "cray cray",
-    "I cant even",
-    "totes",
-    "YOLO",
-    "canot stop, wont stop"
-  ],
-  pickPhrase() {
-    const { phrases } = this;
-    const idx = Math.floor(Math.random() * phrases.length)
-
-    // return to access
-    return phrases[idx]
-
-  },
-  // starts phrases
-  start() {
-    // console.log(this.pickPhrase());
-
-    // store "this" in a var so we can have access, not IDEAL
-    // const that = this;
-
-    // HAVE PROBLEMS WITH "THIS"
-    // setInterval(function () {
-    //   // console.log(this);
-    //   // console.log(that);
-    //   // console.log(that.pickPhrase());
-    // }, 3000)
 
 
-    // ARROW FUNCTIONS AVOID "THIS" PROBLEM... ARROWS DONT HAVE THEIR OWN "THIS"
-    this.timerId = setInterval(() => {
-      console.log(this.pickPhrase());
-    }, 3000)
-  },
-  // stops annoyer
-  stop() {
-    // CLEAR INTERVALS STOPS THE SETINTERVAL but we need an ID
-    clearInterval(this.timerId)
 
-    console.log("PHEW THANKS ITS NOW OVER!");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ *
+ *
+ *
+ *
+ * PUTTING IT ALL TOGETHER: DECK OF CARDS
+ *
+ *
+ *
+ * */
+
+
+
+//         GOOD BUT OLD WAY WITH ISSUES
+// function makeDeck() {
+// const deck = []
+// const suits = ['hearts', 'diamonds', 'spades', 'clubs'];
+// const values = '2,3,4,5,6,7,8,9,10,J,Q,K,A';
+
+//   for (let value of values.split(',')) {
+//     for (let suit of suits) {
+//       deck.push({ value, suit })
+//     }
+//   }
+
+//   return deck;
+// }
+
+
+// function drawCard(deck) {
+//   return deck.pop()
+// }
+
+
+// const myDeck = makeDeck()
+// const card1 = drawCard(myDeck)
+
+// console.log(card1); // {value: "A", suit: "clubs"}
+// console.log(myDeck); // has 51 items now cause pop
+
+
+
+
+
+
+
+
+
+// // now doing it with a obj which solves a lot of our issues
+// const myDeck = {
+//   deck: [],
+//   drawnCards: [],
+//   suits: ['hearts', 'diamonds', 'spades', 'clubs'],
+//   values: '2,3,4,5,6,7,8,9,10,J,Q,K,A',
+//   // updates deck property
+//   initDeck() {
+//     const { suits, values, deck } = this;
+
+//     // we dont have to use "this.deck" cause we destructured them
+//     for (let value of values.split(',')) {
+//       for (suit of suits) {
+//         deck.push({ value, suit })
+//       }
+//     }
+//     return deck
+//   },
+//   // implement draw, so we dont have to pass stuff around when we want to use it
+//   drawCard() {
+//     const card = this.deck.pop();
+
+//     this.drawnCards.push(card);
+//     return card;
+//   },
+//   // Draw multiple cards
+//   drawMultiple(numCards) {
+//     const cards = []
+//     for (let i = 0; i < numCards; i++) {
+//       cards.push(this.drawCard())
+//     }
+//     return cards;
+//   },
+//   // Add Shuffle methodd
+//   shuffle() {
+//     // destructures deck
+//     const { deck } = this
+
+//     // loop over array backwards
+//     for (let i = deck.length - 1; i > 0; i--) {
+//       // pick random index before random element
+//       let j = Math.floor(Math.random() * (i + 1));
+
+//       // SWAP
+//       [deck[i], deck[j]] = [deck[j], deck[i]]
+//       // console.log(deck);
+//     }
+//   }
+// }
+
+// // // starts with empty array
+// // // console.log(myDeck);
+
+// // // but if we call
+// // // myDeck.initDeck(); //  52 cards [{...}]
+
+
+// // const card1 = myDeck.drawCard();
+
+// // // {value: "A", suit: "clubs"}
+// // console.log(card1);
+
+
+
+
+
+
+// // // Example of what the SWAP means and whats its doing on myDeck
+
+// // const letters = ['a', 'b', 'c', 'd', 'e', 'f']
+// // //      [a]          [d] =         [d]         [a]
+// // [letters[0], letters[3]] = [letters[3], letters[0]]
+// // // ["d", "b", "c", "a", "e", "f"]
+
+
+
+
+// // runs 52:[{}]
+// myDeck.initDeck()
+
+
+// // shuffles deck
+// myDeck.shuffle()
+
+// // checks myDeck and its shuffled
+// console.log(myDeck)
+
+
+
+
+
+
+
+
+
+
+
+
+//    BETTER WAY - MAKE ARROW FUNC AND RETURN(ALL CODE HERE)
+
+
+const makeDeck = () => {
+  return {
+    deck: [],
+    drawnCards: [],
+    suits: ['hearts', 'diamonds', 'spades', 'clubs'],
+    values: '2,3,4,5,6,7,8,9,10,J,Q,K,A',
+    initDeck() {
+      const { suits, values, deck } = this;
+      for (let value of values.split(',')) {
+        for (suit of suits) {
+          deck.push({ value, suit })
+        }
+      }
+      return deck
+    },
+    drawCard() {
+      const card = this.deck.pop();
+
+      this.drawnCards.push(card);
+      return card;
+    },
+    drawMultiple(numCards) {
+      const cards = []
+      for (let i = 0; i < numCards; i++) {
+        cards.push(this.drawCard())
+      }
+      return cards;
+    },
+    shuffle() {
+      const { deck } = this
+      for (let i = deck.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [deck[i], deck[j]] = [deck[j], deck[i]]
+      }
+    }
   }
 }
 
 
-// setInterval(func, 3000)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Much Cleaner!!!
+const myDeck = makeDeck()
+myDeck.initDeck();
+// shuffles deck
+myDeck.shuffle();
+
+const h1 = myDeck.drawMultiple(2)
+const h2 = myDeck.drawMultiple(2)
+const h3 = myDeck.drawMultiple(5)
+
+
+// If we want a second deck
+const deck2 = makeDeck();
+// initialize deck2
+deck2.initDeck()
+// deck not shuffled cause we didnt call it
+console.log(deck2);
 
 
 
