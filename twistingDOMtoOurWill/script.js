@@ -412,18 +412,33 @@
 
 
 
-//        FINDING PARENT/CHILDREN/SIBLINGS
+// //        FINDING PARENT/CHILDREN/SIBLINGS
 
+// // parentElement, children(), nextSibling()
 
 
 
 
+// // //              PARENTELEMENT
+// // // ALLOWS YOU TO HAVE ACCESS TO OTHER ELEMENTS BASED OFF OF THE CURRENT ELEMENT THAT YOURE WORKING ON
+// // // WORKS UP THE PARENT TREE FROM LI -> UL -> DIV -> BODY -> HTML -> NULL
 
 
+// // // first li in the parent ul with other li siblings
+// const firstLi = document.querySelector('li')
+// // // gives us the first li
+// // // firstLi; // <li class="special">First Thing</li>
 
 
+// // // IF WE CONSOLE.DIR(FIRSTLI) WE WILL SEE ALL THE METHODS IT HAS.
+// // // WE CAN SEE THAT IT HAS A PARENTELEMET: UL
+// // console.dir(firstLi)
 
+// // // WE CAN ACCESS THE PARENTELEMENT
+// // // firstLi.parentElement; // <ul></ul>
 
+// // // WE CAN ADD ANOTHER PARENTELEMENT AND WE'LL SEE THAT THE PARENTELEMENT OF THE UL IS THE BODY
+// // firstLi.parentElement.parentElement // <body></body>
 
 
 
@@ -433,15 +448,27 @@
 
 
 
+// //                   CHILDREN
+// // // WE GET AN HTMLCOLLECTION
+// // // RETURNS TO YOU IN A HTML COLLECTION THE CHILDREN ELEMENT OF THE UL 
 
+// // const ul = document.querySelector('ul')
 
+// // // htmlCollection
+// // ul.children; // HTMLCollection(3) [li.special, li, li.special]
 
+// // // GET ACCESS TO THE FIRST CHILD OF THE LI
+// // ul.children[0]; // <li class="special">First Thing</li>
 
 
+// // // WE CAN THEN ACCESS THE INNERTEXT OF THE CHILD WE'VE CHOSEN
+// // ul.children[0].innerText // "First Thing"
 
 
 
+// // const form = document.querySelector('form')
 
+// // form.children[2].checked // false
 
 
 
@@ -453,15 +480,28 @@
 
 
 
+// //                   SIBLINGS
+// // SIBLINGS ARE ON THE SAME LEVEL AND THEY SHARE THE SAME PARENT
 
 
+// //             NEXTELEMENTSIBLING
+// // WE GET THE NEXT SIBLING FROM THE FIRST ONE WHICH IS SECOND THING
+// firstLi.nextElementSibling // "<LI>SECOND THING</LI>"
+// // GETS THE THIRD SIBLING
+// firstLi.nextElementSibling.nextElementSibling // "<LI class="special">THIRD THING</LI>"
 
 
 
 
+// //            PREVIOUSELEMENTSIBLING
 
+// const thirdLi = firstLi.nextElementSibling.nextElementSibling
 
+// // "<LI class="special">THIRD THING</LI>"
+// thirdLi
 
+// // GIVES US THE PREVIOUS SIBLING WHICH IS THE SECOND
+// thirdLi.previousElementSibling; // "<LI>SECOND THING</LI>"
 
 
 
@@ -506,17 +546,36 @@
 
 
 
+// //            CHANGING MULTIPLE ELEMENTS
 
+// // 1)  WE GET ALL THE ELEMENTS WE WANT TO CHANGE WITH DOCUMENT.QUERYSELECTORALL OR JUST QUERYSELECTOR
 
+// // 2) THEN WE ITERATE OVER THE ELEMENT/OBJECT/ARRAY
 
+// // 3) THEN WE CALL WHATEVER METHOD/PROPERTY OR WE WANT TO CHANGE
 
 
+// // const allLis = document.querySelectorAll('li')
 
+// // for (let i = 0; i < allLis.length; i++) {
+// //   // console.log(allLis[i]);
 
+// //   // we are adding a <b></b> tag with innerHTML
+// //   allLis[i].innerHTML = 'WE ARE <b>THE CHAMPIONS</b>'
+// // }
 
 
+// // Lets get all the "li" in the page
+// const allLis = document.querySelectorAll('li')
 
+// // now we want to iterate over allLis
+// for (let i of allLis) {
+//   // shows all the LI's innerText
+//   // console.log(i.innerText);
 
+//   // if we want to change allLis we can just set the innerText
+//   i.innerText = 'LOL FROM THE JS'; // every li's have been changed to 'LOL FROM THE JS'
+// }
 
 
 
@@ -558,49 +617,51 @@
 
 
 
+// //               ALTERING STYLES
 
+// // CHANGE CSS STYLES USING JAVASCRIPT
+// // EVERY ELEMENT THAT WE SELECT HAS A STYLE PROPERTY.
+// // WE CAN USE .STYLE TO CHANGE THE STYLE OF THE ELEMENT BUT WE CANNOT GET THE STYLE VALUE THE ELEMENT HAS. IT ONLY SHOWS THE STYLES IF THE CSS IS INLINE WITH THE HTML LIKE: <H1 STYLE="COLOR: TEAL"></H1> THEN WE CAN SEE THAT BUT ITS NOT GOOD TO HAVE STYLES IN HTML TAGS <p style="background-color:'red'">lorem</p>
 
 
 
 
+// // const h1 = document.querySelector('h1')
 
+// // // we can see what methods .style has inits object
+// // h1.style; // alignContent, alignSelf, background,color, etc...
 
+// // // change font and color of h1 with .style
+// // h1.style.color = 'red'; // changed h1 color red
 
 
+// // // gets first p
+// // const p = document.querySelector('p')
 
+// // // chnage p tag style
+// // p.style.color = 'lime'
+// // // chage the background color it need to be camelCase
+// // p.style.backgroundColor = 'purple';
 
 
 
 
+// // NOW LOOP AND CHANGE STYLE
+// const allLis = document.querySelectorAll('li')
 
+// const colors = ['red', 'green', 'blue', 'orange', 'yellow', 'purple']
 
 
+// // we want to place each color into the li index, for...of is not very useful here so we use for() or forEach cause we get the element(li) and the index(color)
+// allLis.forEach((li, i) => {
+//   const color = colors[i];
 
+//   // we can use the index to access the color
+//   console.log(li, color);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//   // change the style
+//   li.style.color = color
+// })
 
 
 
