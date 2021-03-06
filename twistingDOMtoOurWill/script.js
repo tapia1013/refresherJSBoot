@@ -137,10 +137,6 @@
 
 
 
-
-
-
-
 // //                      INNERHTML
 // // IT RETURNS TO US THE TAGS AND TEXT IN "STRINGS"
 // // KINDA SIMILAR TO INNERTEXT AND TEXTCONTENT
@@ -199,23 +195,6 @@
 
 // // if you dont want to overwrite but add on to it
 // h1.innerHTML += ' is cool <b>!!!</b>'; //"My Webpage is cool is cool!!!"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -340,10 +319,6 @@
 
 
 
-
-
-
-
 // //             GETTING & SETTING ATTRIBUTES
 // //       GETATTRIBUTE() AND SETATTRIBUTE()
 // // ITS A METHOD NOT A PROPERTY
@@ -374,11 +349,6 @@
 // // WE CAN ALSO CHANGE THE TYPE FROM TYPE TO RADIO OR CHECKED OR TEXT OR SUBMIT;
 // //('type', 'what we want to change it to')
 // range.setAttribute('type', 'radio')
-
-
-
-
-
 
 
 
@@ -474,12 +444,6 @@
 
 
 
-
-
-
-
-
-
 // //                   SIBLINGS
 // // SIBLINGS ARE ON THE SAME LEVEL AND THEY SHARE THE SAME PARENT
 
@@ -502,11 +466,6 @@
 
 // // GIVES US THE PREVIOUS SIBLING WHICH IS THE SECOND
 // thirdLi.previousElementSibling; // "<LI>SECOND THING</LI>"
-
-
-
-
-
 
 
 
@@ -576,10 +535,6 @@
 //   // if we want to change allLis we can just set the innerText
 //   i.innerText = 'LOL FROM THE JS'; // every li's have been changed to 'LOL FROM THE JS'
 // }
-
-
-
-
 
 
 
@@ -698,16 +653,29 @@
 
 
 
+// //                 getComputedStyle()
 
+// // A DIFF WAY OF ACCESSING STYLE VALUES (NOT TO SET A VALUE BUT TO RETRIEVE WHAT THE CURRENT VALUE IS SOMETHING WE COULDNT DO WITH .STYLES CAUSE THE STYLE WASNT INLINE)
+// //  TO GET THE DATA FROM THE STYLESHEET WE HAVE A METHOD CALLED getComputedStyle()
 
 
+// // returns empty "" cause style is not inline html
+// document.querySelector('li').style.color; // ""
 
 
+// const li = document.querySelector('li')
+// // TO GET THE STYLE FROM THE STYLESHEET.CSS WE NEED GETCOMPUTEDSTYLE
 
+// const styles = getComputedStyle(li);
 
+// // returns an object with a lot of css style current values
+// styles; // CSSStyleDeclaration
 
 
+// li.style.color = 'red';
 
+// // will now get the current Value styles cause of gotComputedStyles() method
+// styles.color; // 'rgb(255,0,0)'
 
 
 
@@ -715,11 +683,20 @@
 
 
 
+// // WE'RE ABLE TO GET VALUES FROM STYLESHEETS NOW
 
+// const h1 = document.querySelector('h1')
 
+// const compStyles = getComputedStyle(h1)
 
+// // purple
+// compStyles.color // rgb(128, 0, 128)"
+// compStyles.fontSize // 60px
 
 
+// // VALUE OF WHEN HOVERIRNG OVER H1
+// compStyles.color // rgb(255,0,0) aka red
+// compStyles.fontSize // 80px
 
 
 
@@ -752,26 +729,57 @@
 
 
 
+// //         MANIPULATING CLASSES / CLASSLIST
+// // MUCH BETTER WAY TO ADD MULTIPLE STYLES AS ONCE
 
+// const todo = document.querySelector('#todos .todo')
 
 
+// //                   OLD WAY
+// // todo.style.color = 'grey'
+// // todo.style.textDecoration = 'line-through'
+// // todo.style.opacity = '50%'
 
 
 
 
+// //  GOOD WAY BUT IT WAS PROBLEMS
+// // IS BY DEFINING A PREMADE CLASS IN THE CSS
+// // WE CAN USE GETATTRIBUTE
 
+// // we're getting a class attribute
+// // todo.getAttribute('class')
 
+// // setAttribute - it loses the todo font size from the css but it made it grey and linethrough
+// // ('value we want to give it', 'value we want to set it')
+// // todo.setAttribute('class', 'done')
 
 
 
 
 
+// //                CLASS LIST
+// // ADD CLASS TO THE ELEMENT
+// // ITS AN OBJECT REPRESENTATION OF THE DOM TOKEN LIST IT KINDA LOOKS LIKE AN ARRAY BUT ITS NOT
+// // BUT IT CONTAINS THE CLASSES THAT WE HAVE ON THIS ELEMENT AND ITS NOT JUST ABOUT CONTAINING THE CLASSES
+// // IT ALSO PROVIDES METHODS SO THAT WE CAN DO THINGS
+// // WE CAN CALL THE METHODS THE CLASSLIST HAS ON THE ITSELF
 
 
+// // DOMTokenList ["done", value: "done"]
+// // todo.classList; // we have [add, contains, entries, forEach, items, keys, length, remove, toggle, etc...]
 
+// // .add('className'), .remove('classname')
+// todo.classList.remove('done'); // removed the class done we had setAttribute
 
 
+// // WE CAN ADD A CLASS
+// todo.classList.add('done')
 
+// // toggle to add if its not there and remove if there
+// todo.classList.toggle('done') // false
+// todo.classList.toggle('done') // true
+// todo.classList.toggle('done') // false
 
 
 
@@ -812,42 +820,8 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//                 CREATING ELEMENTS
+// createElement
 
 
 

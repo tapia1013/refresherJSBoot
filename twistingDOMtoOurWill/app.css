@@ -13,6 +13,11 @@ h1 {
 }
 
 
+/* h1:hover {
+  color: red;
+  font-family: 80px;
+} */
+
 
 #bear-photo {
   width: 250px;
@@ -38,6 +43,28 @@ p {
 } */
 
 
+
+
+
+
+
+
+
+
+.todo {
+  font-size: 30px;
+  color: olive;
+}
+
+
+
+
+/* premade class */
+.done {
+  color: grey;
+  text-decoration: line-through;
+  opacity: 50%;
+}
 
 
 
