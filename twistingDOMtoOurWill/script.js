@@ -821,39 +821,87 @@
 
 
 
-//                 CREATING ELEMENTS
-// createElement
+//  //               CREATING ELEMENTS
+// // createElement
+// // to createElement we pass in a string the el we want\
+// // when we call newh2 its an object
+// // add text to newh2... newh2.innerText = 'text from js'
+// // add a class newh2... newh2.classList.add('special')
+// // TO INSERT THE NEW TAG IN HTML WE NEED TO SELECT AN ELEMENT AND APPEND IT.
 
 
+// // make an element EMPTY h2
+// const newh2 = document.createElement('h2')
+// // Type of element is a HTMLHeadingElement
+// console.dir(newh2)
 
 
+// // TO ADD CONTENT IN THE H2
+// newh2.innerHTML = 'I LIKE COOKIES';
+// // <h2>I LIKE COOKIES</h2>
+// // console.log(newh2);
 
 
+// // now lets add a class
+// newh2.classList.add('special')
+// // <h2 class="special">I LIKE COOKIES</h2>
+// // console.log(newh2);
 
 
 
+// //                        APPEND CHILD
+// // TO ADD OR INSERT THE NEWLY CREATED TAG INTO THE WEBSITE/HTML
+// // WE APPEND CHILD IS A METHOD WE CALL ON A PARENT THAT WE WANT TO APPEND TO AN ELEMENT INTO
 
+// // TO APPEND THE NEWH2 INTO A PARENT TAG LIKE SECTION OR UL OR DIV WE FIRST SELECT IT AND APPEND CHILD TO THE PARENT TAG AND PASS IN OUR NEW H2
 
+// // WE GRAB THE PARENT ELEMENT WE WANT TO APPEND OUR NEWLY CREATED ELEMENT TO
+// const section = document.querySelector('section')
 
+// //         APPEND NEWLYH2 TO SECTION
+// section.appendChild(newh2)
 
 
 
+// // LETS TRY APPENDING AN IMAGE
+// const newImg = document.createElement('img')
 
+// // HTMLImageElement so it behaves diff doesnt have innerText
+// // console.dir(newImg)
 
+// // SO WE TO ADD AN IMAGE WE NEED THE SRC METHOD IT DOES HAVE
+// newImg.src = 'https://images.unsplash.com/photo-1529927066849-79b791a69825?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NXx8cHVnfGVufDB8fDB8&ixlib=rb-1.2.1&w=1000&q=80'
 
 
+// // NOW LETS APPEND BUT WE DONT WANT IT TO APPEND AS A CHILD BUT AS PART OF THE BODY
+// // we can also give it inline style
+// newImg.style.width = '400px'
 
+// // WE APPENDED TO THE BODY
+// document.body.appendChild(newImg)
 
 
 
 
 
 
+// // NEW LINK to leads to youtube
+// const newL = document.createElement('a')
 
+// // add some text
+// newL.innerText = 'CLICK ME FOR YT'
 
+// // add href to yt cause a new element is empty
+// newL.href = 'https://youtube.com'
 
+// // now append... we use body cause we didnt make/target a tag to insert into
+// // document.body.appendChild(newL)
 
+// // lets target where we want to put it into
+// const firstP = document.querySelector('P')
 
+// // NOW APPEND IT TO FIRST P
+// firstP.appendChild(newL)
 
 
 
@@ -893,33 +941,73 @@
 
 
 
+// //           APPEND, PREPEND, & insertBefore
 
 
 
+// //                  INSERT BEFORE
+// // APPEND CHILD BEFORE THE EXISTING LIs OR WE WANT IT TO BE IN THE MIDDLE
 
 
+// // APPEND CHILD - PUTS NEW LI AT THE END OF EXISTING CHILDS
+// const parentUL = document.querySelector('ul')
 
+// // make new li
+// const newLI = document.createElement('li')
+// newLI.innerText = 'I am a new LI'
+// // appendChild makes it last of the child of the parent
+// parentUL.appendChild(newLI)
 
 
 
 
+// // TO INSERT BEFORE WE NEED TO GET THE PARENT AND THE TAG WE WANT TO INSERT BEFORE.
+// // WE WANT TO PUT NEWLI BEFORE MOW THE LAWN WE HAVE TO SELECT THAT
 
+// const firstLi = document.querySelector('li.todo')
+// // insertBefore(newThingWeWantToInsert, WhereWeWantItToINsertBefore)
+// parentUL.insertBefore(newLI, firstLi)
 
+// // IF WE WANT TO PUT IT BEFORE THE LAST LI WE HAVE TO SELECT IT
+// const lastTodo = document.querySelectorAll('li.todo')[2]
 
+// // now insert before 'feed the birds'
+// parentUL.insertBefore(newLI, lastTodo)
 
 
 
 
 
+// //                INSERT ADJACENT ELEMENT
 
+// const i = document.createElement('i')
 
+// i.innerText = 'I AM ITALICS!!!'
 
+// const firstP = document.querySelector('p')
 
+// // inserts before very first paragraph in our page
+// firstP.insertAdjacentElement("beforebegin", i)
 
+// // inserts after very last paragraph in our page
+// firstP.insertAdjacentElement("afterend", i)
 
+// // inserts inside very first paragraph in our page like if its the starting point of the paragraph
+// firstP.insertAdjacentElement("afterbegin", i)
 
+// // inserts inside very last paragraph in our page like if its the ending point of the paragraph
+// firstP.insertAdjacentElement("beforeend", i)
 
 
+// /**
+//  * <!--- "beforebegin" -->
+//  * <p>
+//  *   <!-- "afterbegin" -->
+//  *    this is the text of the p tag lol.
+//  *   <!-- "beforeend" -->
+//  * </p>
+//  * <!-- "afterend" -->
+//  */
 
 
 
@@ -927,50 +1015,19 @@
 
 
 
+// //                     APPEND
+// // WITH APPEND WE CAN INSERT MULTIPLE ELEMENTS AT ONCE UNLINE APPENDCHILD
 
 
+// // insert both newLI and I into the first paragraph we can use append
+// firstP.append(i, newLI) // both appended into <p> as text
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// //                  PREPEND
+// // SAME AS APPEND BUT IT WILL MAKE IT THE FIRST CHILD
+// firstP.prepend(i, newLI)
 
 
 
