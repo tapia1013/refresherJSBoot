@@ -1068,15 +1068,36 @@
 
 
 
+//                REMOVECHILD() & REMOVE
+// THEY REMOVE AND REMOVE ELEMENTS THAT YOU PASS IN, THEY FOLLOW THE PATTERN WE SAW WITH APPEND CHILD METHODS
 
 
 
 
+// removeChild() older
+// TO USE REMOVE CHILD WE NEED TO FIND THE PARENT OF THE THE CHILD WE'RE TRYING TO REMOVE AND FIND THE ITEM WE WANT TO REMOVE
+
+// REMOVE WORKS DIFF THAN REMOVECHILD CAUSE IT DOESNT NEEDS THE PARENT NODE, WE JUST NEED TO SELECT THE TARGTE WE WANT REMOVED, THEN CALL REMOVE ON THAT NODE
+
+
+// get parent ul
+const ul = document.querySelector('section ul')
+
+// lets remove peas... we use ul.query instead of the longer way
+// WHEN WE REMOVE CHILD IT RETURNS IT SO WE CAN SAVE IT
+const removeMe = ul.querySelector('.special')
+
+// now we remove the child peas from the ul
+const deleted = ul.removeChild(removeMe)
 
 
 
 
+// remove() new - LETS REMOVE THE H1
+const h1 = document.querySelector('h1')
 
+// then add .remove() methd to h1 and it deletes the h1 its that simple
+h1.remove()
 
 
 
