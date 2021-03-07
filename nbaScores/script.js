@@ -83,3 +83,81 @@ const warriorsGames = [{
   }
 }
 ]
+
+
+// make new element container
+const ulparent = document.createElement('ul')
+
+// iterate over the games
+for (let game of warriorsGames) {
+  const { homeTeam, awayTeam } = game
+
+  // console.log(awayTeam.team, homeTeam.team);
+
+  // we want an li for each team
+  const gameLi = document.createElement('li');
+
+  // destructure points and team out of object
+  const {
+    team: hTeam,
+    points: hPoints
+  } = homeTeam;
+
+  const {
+    team: aTeam,
+    points: aPoints
+  } = awayTeam
+
+
+  // GSW @ Houston
+  // gameLi.innerText = `${awayTeam.team} @ ${homeTeam.team}`;
+  const teamNames = `${aTeam} @ ${hTeam}`
+
+  // have to put scoreline here cause if statement doesnt have access to it cause of scope
+  let scoreLine;
+
+  // compare the 2 points
+  if (aPoints > hPoints) {
+    // score - score
+    scoreLine = `<b>${aPoints}</b>-${hPoints}`
+  } else {
+    scoreLine = `${aPoints}-<b>${hPoints}</b>`
+  }
+
+  // check if gsw
+  const warriors = hTeam === 'Golden State' ? homeTeam : awayTeam
+  // is winner?
+  gameLi.classList.add(warriors.isWinner ? 'win' : 'loss')
+
+  gameLi.innerHTML = `${teamNames} ${scoreLine}`
+
+
+  // append each li into the ul
+  ulparent.appendChild(gameLi)
+}
+
+// For it to show up we need to append it to the body, shows "Golden State @ Houston" now
+document.body.prepend(ulparent)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
