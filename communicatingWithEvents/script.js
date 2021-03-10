@@ -109,6 +109,28 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // // window.screen; // Screen {availWidth: 1920, availHeight: 1040, width: 1920, height: 1080, colorDepth: 24, …}
 
 
@@ -157,55 +179,146 @@
 
 
 
-//             EVENTS ON MULTIPLE ELEMENETS
-//                EVENT OBJECT
-// function (event) {console.log(e)} it gives us an object
-
-const colors = [
-  'red',
-  'orange',
-  'yellow',
-  'green',
-  'blue',
-  'purple',
-  'indigo',
-  'violet'
-]
-
-const h1 = document.querySelector('h1')
-// make a seperate function so it wont be too nested
-const changeColor = function (e) {
-  // console.log(this);
-  // console.log(this.style.backgroundColor);
-  console.log(e);
-  h1.style.color = this.style.backgroundColor
-}
-
-const container = document.querySelector('#boxes')
-
-for (let color of colors) {
-  const box = document.createElement('div');
-
-  box.style.backgroundColor = color;
-  box.classList.add('box')
-  container.appendChild(box)
-
-  box.addEventListener('click', changeColor)
-}
 
 
 
-//          event object if we click the body
-// if we put keypress it returns to us the key that was press on the keyboard like a b c d e f g etc..
-// the presskey is contained in the (e) object
-document.body.addEventListener('keypress', function (e) {
-  console.log(e);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// //             EVENTS ON MULTIPLE ELEMENETS
+// //                EVENT OBJECT
+// // function (event) {console.log(e)} it gives us an object
+
+// const colors = [
+//   'red',
+//   'orange',
+//   'yellow',
+//   'green',
+//   'blue',
+//   'purple',
+//   'indigo',
+//   'violet'
+// ]
+
+// const h1 = document.querySelector('h1')
+// // make a seperate function so it wont be too nested
+// const changeColor = function (e) {
+//   // console.log(this);
+//   // console.log(this.style.backgroundColor);
+//   console.log(e);
+//   h1.style.color = this.style.backgroundColor
+// }
+
+// const container = document.querySelector('#boxes')
+
+// for (let color of colors) {
+//   const box = document.createElement('div');
+
+//   box.style.backgroundColor = color;
+//   box.classList.add('box')
+//   container.appendChild(box)
+
+//   box.addEventListener('click', changeColor)
+// }
+
+
+
+// //          event object if we click the body
+// // if we put keypress it returns to us the key that was press on the keyboard like a b c d e f g etc..
+// // the presskey is contained in the (e) object
+// document.body.addEventListener('keypress', function (e) {
+//   console.log(e);
+// })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const input = document.querySelector('#username')
+
+
+
+// // with keys we want the event object cause we want the info 
+// input.addEventListener('keydown', function (e) {
+//   console.log('KEY DOWN');
+// })
+
+
+// // key up, means get info when the key is let go of
+// input.addEventListener('keyup', function (e) {
+//   console.log('KEY UP');
+// })
+
+
+// // kepress for something to be considered a keypress there needs to be a change like space or a text
+// input.addEventListener('keypress', function (e) {
+//   console.log('KEY PRESS');
+// })
+
+
+
+
+const addItemInput = document.querySelector('#addItem')
+const itemsUL = document.querySelector('#items')
+
+
+addItemInput.addEventListener('keypress', function (e) {
+  // console.log(e);
+
+  // prevents empty values from being LIs
+  if (!this.value) return;
+
+  if (e.key === 'Enter') {
+    // add new item to list, grab value from input
+    const newItemText = this.value
+
+    // create new LI to append new li
+    const newItem = document.createElement('li');
+
+    newItem.innerHTML = newItemText;
+
+    // append
+    itemsUL.appendChild(newItem);
+
+    // clear input
+    this.value = '';
+  }
 })
-
-
-
-
-
 
 
 
