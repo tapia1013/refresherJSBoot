@@ -89,12 +89,14 @@ const formData = {}
 
 
 
-
+const ul = document.createElement('ul')
 
 
 // THERES A BETTER WAY OF WRITING THE ABOVE with NAME
 // We loop over the const input fields above
 for (let input of [creditCard, terms, veggie]) {
+  const li = document.createElement('li')
+
   input.addEventListener('input', ({ target }) => {
     // console.log(e.target.name);
 
@@ -106,9 +108,16 @@ for (let input of [creditCard, terms, veggie]) {
 
     console.log(formData);
 
+    li.innerHTML = formData[name]
+
+    return ul.appendChild(li)
+
     // e.preventDefault();
   })
+
+
 }
+document.body.prepend(ul)
 
 
 
