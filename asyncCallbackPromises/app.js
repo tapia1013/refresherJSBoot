@@ -558,156 +558,212 @@
 
 
 
-//             PROMISE CHAINING
 
 
 
 
-// Fake Http Request function
-// It takes 1 sec to resolve or reject the promise, depending on the url that is passed in
 
-const fakeRequest = (url) => {
+
+
+
+
+
+
+
+// //             PROMISE CHAINING
+
+
+
+
+// // Fake Http Request function
+// // It takes 1 sec to resolve or reject the promise, depending on the url that is passed in
+
+// const fakeRequest = (url) => {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       const pages = {
+//         '/users': [
+//           { id: 1, username: 'Vee' },
+//           { id: 5, username: 'Jay' }
+//         ],
+//         '/users/1': {
+//           id: 1,
+//           username: 'Vee',
+//           upvotes: 232,
+//           city: 'TOETOE',
+//           topPostId: 45321
+//         },
+//         '/users/5': {
+//           id: 5,
+//           username: 'Jay',
+//           upvotes: 984,
+//           city: 'LA'
+//         },
+//         '/posts/45321': {
+//           id: 45321,
+//           title: 'Ladies & Gents, may I introduce my pet dog, Cookie'
+//         },
+//         '/about': 'This is the about page bro!'
+//       };
+//       const data = pages[url];
+//       if (data) {
+//         resolve({ status: 200, data }) // resolve with value
+//       } else {
+//         reject({ status: 404 }) // reject with value
+//       }
+//     }, 1000)
+//   })
+// }
+
+// // fakeRequest('/users').then((res) => {
+// //   // gets the id of the 0 index
+// //   const id = res.data[0].id;
+// //   fakeRequest(`/users/${id}`).then((res) => {
+// //     const postId = res.data.topPostId
+// //     // to access the post i have in object
+// //     fakeRequest(`/posts/${postId}`).then((res) => {
+// //       console.log(res);
+// //     })
+// //   })
+// // })
+// //   .catch((err) => {
+// //     console.log("OH NOOOO!!", err);
+// //   })
+
+
+
+// // we can chain on .then() and it returns a promise instead of doing the above
+// // .then()
+// // .then()
+// // .then()
+// // BETTER WAY THAN THE ABOVE
+// fakeRequest('/users')
+//   .then((res) => {
+//     console.log(res);
+//     const id = res.data[0].id;
+//     return fakeRequest(`/users/${id}`)
+//   })
+//   .then((res) => {
+//     console.log(res);
+//     const postId = res.data.topPostId;
+//     return fakeRequest(`/posts/${postId}`)
+//   })
+//   .then((res) => {
+//     console.log(res);
+//   })
+//   .catch((err) => {
+//     console.log('OH NO!', err);
+//   })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//        REFACTORING FIST BTN WITH PROMISE
+
+
+
+
+
+const btn = document.querySelector('button');
+
+const moveX = (element, amount, delay) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      const pages = {
-        '/users': [
-          { id: 1, username: 'Vee' },
-          { id: 5, username: 'Jay' }
-        ],
-        '/users/1': {
-          id: 1,
-          username: 'Vee',
-          upvotes: 232,
-          city: 'TOETOE',
-          topPostId: 45321
-        },
-        '/users/5': {
-          id: 5,
-          username: 'Jay',
-          upvotes: 984,
-          city: 'LA'
-        },
-        '/posts/45321': {
-          id: 45321,
-          title: 'Ladies & Gents, may I introduce my pet dog, Cookie'
-        },
-        '/about': 'This is the about page bro!'
-      };
-      const data = pages[url];
-      if (data) {
-        resolve({ status: 200, data }) // resolve with value
+      const bodyBound = document.body.clientWidth;
+      const elRight = element.getBoundingClientRect().right;
+      const currLeft = element.getBoundingClientRect().left;
+
+      if (elRight + amount > bodyBound) {
+        // to see why we stopped/rejected
+        reject({ bodyBound, elRight, amount })
       } else {
-        reject({ status: 404 }) // reject with value
+        element.style.transform = `translateX(${currLeft + amount}px)`;
+        resolve();
       }
-    }, 1000)
+    }, delay)
   })
 }
 
-// fakeRequest('/users').then((res) => {
-//   // gets the id of the 0 index
-//   const id = res.data[0].id;
-//   fakeRequest(`/users/${id}`).then((res) => {
-//     const postId = res.data.topPostId
-//     // to access the post i have in object
-//     fakeRequest(`/posts/${postId}`).then((res) => {
-//       console.log(res);
-//     })
+
+
+
+// moveX(btn, 300, 1000)
+//   .then(() => {
+//     return moveX(btn, 300, 1000)
 //   })
-// })
-//   .catch((err) => {
-//     console.log("OH NOOOO!!", err);
+//   .then(() => {
+//     return moveX(btn, 300, 1000)
+//   })
+//   .then(() => {
+//     return moveX(btn, 300, 1000)
+//   })
+//   .then(() => {
+//     console.log('WERE DONE WITH MOVING');
+//   })
+//   .catch(() => {
+//     console.log("ERROR CANT MOVE ANYMORE");
 //   })
 
 
-
-// we can chain on .then() and it returns a promise instead of doing the above
-// .then()
-// .then()
-// .then()
-// BETTER WAY THAN THE ABOVE
-fakeRequest('/users')
-  .then((res) => {
-    console.log(res);
-    const id = res.data[0].id;
-    return fakeRequest(`/users/${id}`)
+moveX(btn, 100, 1000)
+  .then(() => moveX(btn, 100, 500))
+  .then(() => moveX(btn, 100, 500))
+  .then(() => moveX(btn, 100, 500))
+  .then(() => moveX(btn, 100, 500))
+  .then(() => moveX(btn, 100, 500))
+  .then(() => moveX(btn, 100, 500))
+  .then(() => moveX(btn, 100, 500))
+  .then(() => moveX(btn, 100, 500))
+  .then(() => moveX(btn, 100, 500))
+  .then(() => moveX(btn, 100, 500))
+  .then(() => moveX(btn, 100, 1000))
+  .catch(({ bodyBound, amount, elRight }) => {
+    console.log(`Body is ${bodyBound}`)
+    console.log(`Element is at ${elRight}px, ${amount}px is too large!!!`)
   })
-  .then((res) => {
-    console.log(res);
-    const postId = res.data.topPostId;
-    return fakeRequest(`/posts/${postId}`)
-  })
-  .then((res) => {
-    console.log(res);
-  })
-  .catch((err) => {
-    console.log('OH NO!', err);
-  })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
