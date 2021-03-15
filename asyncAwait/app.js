@@ -478,7 +478,15 @@
  *         Parallel Vs. Sequential Requests
  *
  *
+ * SEQUEL - IS IF WE WWANT TO WAIT FOR THE PREVIOUS AWAIT TO FINISH TO GET DATA FROM IT OR WE DEPEND ON THE AWAIT
  *
+ *
+ * PARALLEL - DOES EVERYTHING AT THE SAMETIME AND SHOWS THE LAST AWAIT YOU CALL
+ *
+ *
+ *
+ *
+ * PROMISE.ALL([]) ACCEPTS AN ARRAY OF ALL PROMISES IT DOES WHAT PARALLEL DOES BUT WITH LESS CODE
  *
  *
  */
@@ -488,17 +496,51 @@
 
 
 
+// //   SEQUENTIAL REQUEST 1 SENDING OFF AT A TIME
 
+// async function get3Pokemon() {
+//   // THEY ARE NOT BEING SENT OFF AT THE SAMETIME...
+//   // THESE ARE RUNNING SEQUENTLY, 1 IS RUNNING AND THE OTHERS ARE WAITING AND THEN THE NEXT RUNS AND THE OTHER IS WAITING AND THEN THE LAST RUNS AND THE CODE IS FINISH
+//   const poke1 = await axios.get('https://pokeapi.co/api/v2/pokemon/1');
+//   const poke2 = await axios.get('https://pokeapi.co/api/v2/pokemon/2');
+//   const poke3 = await axios.get('https://pokeapi.co/api/v2/pokemon/3');
+//   console.log(poke1.data);
+//   console.log(poke2.data);
+//   console.log(poke3.data);
+// }
+// get3Pokemon()
 
 
 
 
 
+//              PARALLEL
+// WE DONT HAVE TO "AWAIT" IN ORIGINAL PLACE
+// WE "AWAIT" AFTER THE AXIOS REQUEST
+// WE DO THIS IF WE DONT CARE OR DEPEND ON THE FOLLOWING REQUEST PROMISE
 
+// async function get3Pokemon() {
+//   const prom1 = axios.get('https://pokeapi.co/api/v2/pokemon/1');
+//   const prom2 = axios.get('https://pokeapi.co/api/v2/pokemon/2');
+//   const prom3 = axios.get('https://pokeapi.co/api/v2/pokemon/3');
 
+//   // pending
+//   console.log(prom1);
 
+//   // we await here... brings back undefined.. so we change the poke to prom cause the vars above are now promises and we store them in the new poke vars
+//   const poke1 = await prom1;
+//   const poke2 = await prom2;
+//   const poke3 = await prom3;
 
+//   // resolved now cause we awaited the prom variable
+//   console.log(prom1);
 
+//   // THESE WERE SENT IN PARALLEL
+//   console.log(poke1.data);
+//   console.log(poke2.data);
+//   console.log(poke3.data);
+// }
+// get3Pokemon()
 
 
 
@@ -507,53 +549,77 @@
 
 
 
+// // SEE THE SEQUENCE BUT IN SLOW MOTION
+// function changeBodyColor(color, delay) {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       document.body.style.background = color;
+//       // dont forget to always resolve
+//       resolve()
+//     }, delay)
+//   })
+// }
+// // changeBodyColor('teal', 1000)
 
 
 
+// // // NOW LETS MAKE AN ASYNC FUNC
+// // async function lightShow() {
+// //   // await this promise when its done then move on to the next promise
+// //   await changeBodyColor('teal', 1000)
+// //   await changeBodyColor('pink', 1000)
+// //   await changeBodyColor('blue', 1000)
+// //   await changeBodyColor('orange', 1000)
+// // }
 
+// // lightShow()
 
 
+// //  SAME AS ABOVE BUT IN PARALLEL
+// // IN PARALLEL WE SAVE EACH TO A VAR
+// // HAPPENS ALL AT THE SAMETIME SO NO 1000 WAITING
+// async function lightShow() {
+//   const p1 = changeBodyColor('teal', 1000)
+//   const p2 = changeBodyColor('pink', 1000)
+//   const p3 = changeBodyColor('blue', 1000)
+//   const p4 = changeBodyColor('orange', 1000)
 
+//   // then we call them here with await
+//   await p1
+//   await p2
+//   await p3
+//   await p4
+// }
+// // goes to the last promise color
+// lightShow()
 
 
 
 
 
 
+//        REFACTORING WITH PROMISE.ALL
+// PARALLEL WITH PROMISE.ALL([])
+async function get3Pokemon() {
+  const prom1 = axios.get('https://pokeapi.co/api/v2/pokemon/1');
+  const prom2 = axios.get('https://pokeapi.co/api/v2/pokemon/2');
+  const prom3 = axios.get('https://pokeapi.co/api/v2/pokemon/3');
 
+  // PROMISE.ALL([]) and await the promise.all ALSO RETURNS A PROMISE ITESELF
+  const results = await Promise.all([prom1, prom2, prom3])
+  console.log(results);
 
+  printPokemon(results)
+}
 
+function printPokemon(results) {
+  for (let poke of results) {
+    console.log(poke.data.name);
+  }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// WE GET BACK AN ARRAY WITH 3 OBJECTS WITH VALUES
+get3Pokemon()
 
 
 
