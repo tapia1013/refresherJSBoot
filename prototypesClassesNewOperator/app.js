@@ -492,15 +492,15 @@
  * DOES THE SAMETHING AS THE ABOVE BUT WITH CLASSES SO ITS SHORTER AND EASIER TO READ AND IMPLEMENT
  *
  *
- * we do a class by writing class and name 
+ * we do a class by writing class and name
  *     inside the class always goes a construcor
  *     its kinda like function Color(r,g,b) {this.r} etc...
  *         we usuall access "this" inside the constructor
- * 
- * 
- * 
- * 
- * 
+ *
+ *
+ *
+ *
+ *
  * constructor() {} runs immediately after we instasitate it const c1 = new Color(0,0,0)
  *
  *
@@ -516,52 +516,236 @@
 
 
 
+// // // This is a Contructor Function...
+// // function Color(r, g, b) {
+// //   this.r = r;
+// //   this.g = g;
+// //   this.b = b;
+// // }
+
+// // // If you call it on its own like a regular func
+// // Color(35, 69, 189) // undefined
+// // // It returns undefined. Seems useless!
+
+// // // ********************
+// // //  THE NEW OPERATOR!
+// // // ********************
+
+// // // 1. Creates a blank, plain JS object
+// // // 2. Links (sets the constructor of) this object to another object
+// // // 3. Passes the newly created object from Step1 as the "this" context
+// // // 4. Returns "this" if the function doesnt return own object
+
+// // Color.prototype.rgb = function () {
+// //   const { r, g, b } = this;
+// //   return `rgb(${r},${g},${b})`
+// // }
+
+// // Color.prototype.hex = function () {
+// //   const { r, g, b } = this;
+// //   return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)
+// // }
+
+// // Color.prototype.rgba = function (a = 1.0) {
+// //   const { r, g, b } = this;
+// //   return `rgba(${r},${g},${b}, ${a})`
+// // }
+
+// // const color1 = new Color(40, 255, 60)
+// // color1.hex()
+
+// // const color2 = new Color(0, 0, 0)
+// // color2.hex()
 
 
 
 
 
 
-// // This is a Contructor Function...
-// function Color(r, g, b) {
-//   this.r = r;
-//   this.g = g;
-//   this.b = b;
+
+// // keyword called class and we give it a name
+// class Color {
+//   // we always call constructor when doing a class
+//   constructor(r, g, b, name) {
+//     // console.log("inside contructor");
+//     // console.log(r, g, b);
+
+//     // usually in the contructor we access "this"
+//     this.r = r;
+//     this.g = g;
+//     this.b = b;
+//     this.name = name;
+//   }
+
+//   // adding methods is here... its like Color.prototype.greet = function(){}
+//   // greet() {
+//   //   return `HELLO FROM ${this.name}!`
+//   // }
+
+//   // cause rgb and rgba are similar lets dry code
+//   innerRGB() {
+//     const { r, g, b } = this;
+//     return `${r},${g},${b}`
+//   }
+
+//   // CALL METHOD WITHIN THE SAME METHOD/CLASS
+//   rgb() {
+//     // this is how we call a func thats within 
+//     return `rgb(${this.innerRGB()})`
+//   }
+
+//   rgba(a = 1.0) {
+//     return `rgba(${this.innerRGB()}, ${a})`
+//   }
+
+//   hex() {
+//     const { r, g, b } = this;
+//     return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)
+//   }
 // }
 
-// // If you call it on its own like a regular func
-// Color(35, 69, 189) // undefined
-// // It returns undefined. Seems useless!
 
-// // ********************
-// //  THE NEW OPERATOR!
-// // ********************
+// // create new Color
+// const red = new Color(255, 23, 1, 'tomato') // inside constructor and r g b values we passed in
+// red.hex() // "#ff1701"
 
-// // 1. Creates a blank, plain JS object
-// // 2. Links (sets the constructor of) this object to another object
-// // 3. Passes the newly created object from Step1 as the "this" context
-// // 4. Returns "this" if the function doesnt return own object
+// const white = new Color(255, 255, 255, 'white')
+// white.hex() // #ffffff
 
-// Color.prototype.rgb = function () {
-//   const { r, g, b } = this;
-//   return `rgb(${r},${g},${b})`
+// // compare both .hex
+// // red.hex === white.hex // true... cause they come from the proto and have the same hex available 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ *          MORE PRACTICE WITH CLASSES
+ *
+ *
+ *
+ *
+ */
+
+
+
+
+
+
+// class Color {
+//   constructor(r, g, b, name) {
+//     this.r = r;
+//     this.g = g;
+//     this.b = b;
+//     this.name = name;
+//     // we can call a method from below
+//     this.calcHSL()
+//   }
+
+//   innerRGB() {
+//     const { r, g, b } = this;
+//     return `${r},${g},${b}`
+//   }
+
+//   rgb() {
+//     return `rgb(${this.innerRGB()})`
+//   }
+
+//   rgba(a = 1.0) {
+//     return `rgba(${this.innerRGB()}, ${a})`
+//   }
+
+//   hex() {
+//     const { r, g, b } = this;
+//     return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)
+//   }
+
+//   hsl() {
+//     const { h, s, l } = this;
+//     return `hsl(${h}, ${s}%, ${l}%)`
+//   }
+
+//   fullySat() {
+//     const { h, l } = this;
+//     return `hsl(${h}, 100%, ${l}%)`
+//   }
+
+//   opposite() {
+//     const { h, s, l } = this;
+//     const newHue = (h + 180) % 360;
+//     return `hsl(${newHue}, ${s}%, ${l}%)`
+//   }
+
+//   // new part added to previous code
+//   calcHSL() {
+//     let { r, g, b } = this;
+
+//     // make r,g,b fractions of 1
+//     r /= 255;
+//     g /= 255;
+//     b /= 255;
+
+//     // Find greatest and smallest channel values
+//     let cmin = Math.min(r, g, b),
+//       cmax = Math.max(r, g, b),
+//       delta = cmax - cmin,
+//       h = 0,
+//       s = 0,
+//       l = 0;
+
+//     if (delta == 0) h = 0;
+//     // red is max
+//     else if (cmax = r) h = ((g - b) / delta) % 6
+//     // Green is max
+//     else if (cmax == g) h = (b - r) / delta + 2
+//     // Blue is max
+//     else h = (r - g) / delta + 4;
+
+//     h = Math.round(h * 60)
+
+//     // Make negative hues positive behind 360
+//     if (h < 0) h += 360;
+
+//     // calculate saturation
+//     s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+
+//     // Multiply l and s by 100
+//     s = +(s * 100).toFixed(1);
+//     l = +(l * 100).toFixed(1);
+
+//     this.h = h;
+//     this.s = s;
+//     this.l = l;
+
+//   }
 // }
 
-// Color.prototype.hex = function () {
-//   const { r, g, b } = this;
-//   return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)
-// }
-
-// Color.prototype.rgba = function (a = 1.0) {
-//   const { r, g, b } = this;
-//   return `rgba(${r},${g},${b}, ${a})`
-// }
-
-// const color1 = new Color(40, 255, 60)
-// color1.hex()
-
-// const color2 = new Color(0, 0, 0)
-// color2.hex()
+// const red = new Color(255, 0, 0., 'red')
+// const white = new Color(255, 255, 255, "white")
 
 
 
@@ -569,444 +753,103 @@
 
 
 
-// keyword called class and we give it a name
-class Color {
-  // we always call constructor when doing a class
-  constructor(r, g, b, name) {
-    // console.log("inside contructor");
-    // console.log(r, g, b);
 
-    // usually in the contructor we access "this"
-    this.r = r;
-    this.g = g;
-    this.b = b;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ *
+ *           EXTENDS, SUPER, SUBCLASSES
+ *
+ *
+ * EXTENDS - BASICALLY SHARING FUNCTIONALITY BETWEEN CLASSES, we can put the constructor and names and a method in Pet and another class can have access to those if it extends Pet
+ *    class Dog extends Pet{}
+ *
+ *
+ *
+ *
+ * SUPER() - kinda like spreads, it references the class that we are extending from
+ * 
+ * 
+ * 
+ *
+ *
+ */
+
+
+
+
+class Pet {
+  constructor(name, age) {
+    console.log("IN PET CONSTRUCTOR");
     this.name = name;
+    this.age = age;
   }
-
-  // adding methods is here... its like Color.prototype.greet = function(){}
-  // greet() {
-  //   return `HELLO FROM ${this.name}!`
-  // }
-
-  // cause rgb and rgba are similar lets dry code
-  innerRGB() {
-    const { r, g, b } = this;
-    return `${r},${g},${b}`
-  }
-
-  // CALL METHOD WITHIN THE SAME METHOD/CLASS
-  rgb() {
-    // this is how we call a func thats within 
-    return `rgb(${this.innerRGB()})`
-  }
-
-  rgba(a = 1.0) {
-    return `rgba(${this.innerRGB()}, ${a})`
-  }
-
-  hex() {
-    const { r, g, b } = this;
-    return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)
+  eat() {
+    return `${this.name} is eating!`
   }
 }
 
 
-// create new Color
-const red = new Color(255, 23, 1, 'tomato') // inside constructor and r g b values we passed in
-red.hex() // "#ff1701"
-
-const white = new Color(255, 255, 255, 'white')
-white.hex() // #ffffff
-
-// compare both .hex
-// red.hex === white.hex // true... cause they come from the proto and have the same hex available 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+class Cat extends Pet {
+  // ADDITIONAL INFO ABOUT CAT WITH SUPER()
+  constructor(name, age, livesleft = 9) {
+    console.log("IN CAT CONSTRUCTOR");
+
+    // if we dont want to duplicate name and age we put super keyword
+    // this.name = name;
+    // this.age = age;
+
+    super(name, age)
+
+    this.livesleft = livesleft;
+  }
+
+  meow() {
+    return "MEOWWW!!!"
+  }
+}
+
+// const cookie = new Cat('Cookie', 6)
+// cookie.eat()// "Cookie is eating!"
+
+class Dog extends Pet {
+  bark() {
+    return 'WOOF BISH!!'
+  }
+  // overwrites eat from Pet but only here
+  eat() {
+    return `${this.name} MUNCHES!!!`
+  }
+}
 
 
 
