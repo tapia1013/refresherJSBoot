@@ -250,6 +250,20 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
  *             CONSTRUCTOR FUNCTIONS
  *
@@ -291,20 +305,15 @@
  * var car1 = new Car('Eagle', 'Talon TSi', 1993)
  * console.log(car1.make); // "Eagle"
  *
- * 
- * 
- * 
+ *
+ *
+ *
  *            COLOR EXAMPLE
  * IF WE LOOK A THE __PROTO__ WE ALSO SEE A CONSTRUCOR ALONG SIDE IT
  * WHAT THIS ALLOWS US TO DO IS ADD METHODS TO THE PROTOTYPE CAUSE REMEMBER ABOVE === WAS FALSE
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
+ *
+ *
+ *
  *
  *
  */
@@ -350,175 +359,267 @@
 
 
 
+// function Color(r, g, b) {
+//   this.r = r;
+//   this.g = g;
+//   this.b = b;
+
+//   // console.log(this); // undefined/window if we dont add "new"
+
+//   // still defined on object but not prototype, WE HAVE A WORK AROUND, WE DEFINE THIS METHOD OUTSIDE OF THE THIS SCOPE
+//   // this.rgb = function () {
+//   //   const { r, g, b } = this;
+//   //   return `rgb(${r},${g},${b})`
+//   // }
+// }
+
+// // lets try and call Color without the "new" and we get nothing back
+// // Color(255, 0, 0)
+
+
+// // WE HAVE TO CALL "NEW" OR ELSE IT WONT WORK
+// // 1 ADDING "NEW" CREATES A NEW JS OBJECT
+// // 2 LINKS HTE OBJECT OT THE OTHER OBJECT
+// // 3 PASSES NEWLY CREATES OBJECT FROM SETP1
+// // const fav = new Color(244, 23, 1)
+
+
+// // SINCE IT CREATES A CONSTRUCTOR IT MEANS WE CAN ADD METHODS TO THE PROTOTYPE NOW UNLIKE BEFORE WHERE === WAS FALSE CAUSE IT WASNT THE SAME OR NOT ALL HAD ACCESS TO IT LIKE SLICE()
+
+
+// // DOING IT THIS WAY ITS IN THE PROTOTYPE NOW
+// Color.prototype.rgb = function () {
+//   const { r, g, b } = this;
+//   return `rgb(${r},${g},${b})`
+// }
+
+// // THIS WILL ALSO BE IN __PROTO__... WE STILL HAVE ACCESS TO "THIS" IN THESE FUNCTIONS
+// Color.prototype.hex = function () {
+//   const { r, g, b } = this;
+//   return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)
+// }
+
+
+// Color.prototype.rgba = function (a = 1.0) {
+//   const { r, g, b, } = this;
+//   return `rgba(${r},${g},${b},${a})`
+// }
+
+
+// // we now have an object that has rgb, it doesnt have the rgb() defined along side its inside the __proto__
+
+// const color1 = new Color(40, 250, 70)
+// // we can call color2.rgb(), so now its BETTER CAUSE ITS NOT UNIQUE TO ONLY THAT OBJECT CAUSE ITS IN __PROTO__
+// color1.rgb() // "rgb(40,50,70)"
+// color1.hex() // "#283246"
+
+
+// const color2 = new Color(0, 0, 0)
+// color2.rgb() // "rgb(0,0,0)"
+// color2.hex() // Color {r: 0, g: 0, b: 0}
 
 
 
 
-function Color(r, g, b) {
-  this.r = r;
-  this.g = g;
-  this.b = b;
+// // NOW LETS VERIFY IF ITS THE SAME CAUSE EARLIER IT FAILED WHEN WE DID IT THE OTHER WAY
+// // THEYRE POINTING TO THE SAMETHING
+// // color1.hex() === color2.hex() // TRUE
 
-  // console.log(this); // undefined/window if we dont add "new"
+// document.body.style.backgroundColor = color1.rgba(0.3)
 
-  // still defined on object but not prototype, WE HAVE A WORK AROUND, WE DEFINE THIS METHOD OUTSIDE OF THE THIS SCOPE
-  // this.rgb = function () {
-  //   const { r, g, b } = this;
-  //   return `rgb(${r},${g},${b})`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ *                CLASSES
+ *
+ * JS CLASSES - SYNTACTICAL SUGAR
+ * DOES THE SAMETHING AS THE ABOVE BUT WITH CLASSES SO ITS SHORTER AND EASIER TO READ AND IMPLEMENT
+ *
+ *
+ * we do a class by writing class and name 
+ *     inside the class always goes a construcor
+ *     its kinda like function Color(r,g,b) {this.r} etc...
+ *         we usuall access "this" inside the constructor
+ * 
+ * 
+ * 
+ * 
+ * 
+ * constructor() {} runs immediately after we instasitate it const c1 = new Color(0,0,0)
+ *
+ *
+ *
+ *
+ *
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // This is a Contructor Function...
+// function Color(r, g, b) {
+//   this.r = r;
+//   this.g = g;
+//   this.b = b;
+// }
+
+// // If you call it on its own like a regular func
+// Color(35, 69, 189) // undefined
+// // It returns undefined. Seems useless!
+
+// // ********************
+// //  THE NEW OPERATOR!
+// // ********************
+
+// // 1. Creates a blank, plain JS object
+// // 2. Links (sets the constructor of) this object to another object
+// // 3. Passes the newly created object from Step1 as the "this" context
+// // 4. Returns "this" if the function doesnt return own object
+
+// Color.prototype.rgb = function () {
+//   const { r, g, b } = this;
+//   return `rgb(${r},${g},${b})`
+// }
+
+// Color.prototype.hex = function () {
+//   const { r, g, b } = this;
+//   return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)
+// }
+
+// Color.prototype.rgba = function (a = 1.0) {
+//   const { r, g, b } = this;
+//   return `rgba(${r},${g},${b}, ${a})`
+// }
+
+// const color1 = new Color(40, 255, 60)
+// color1.hex()
+
+// const color2 = new Color(0, 0, 0)
+// color2.hex()
+
+
+
+
+
+
+
+// keyword called class and we give it a name
+class Color {
+  // we always call constructor when doing a class
+  constructor(r, g, b, name) {
+    // console.log("inside contructor");
+    // console.log(r, g, b);
+
+    // usually in the contructor we access "this"
+    this.r = r;
+    this.g = g;
+    this.b = b;
+    this.name = name;
+  }
+
+  // adding methods is here... its like Color.prototype.greet = function(){}
+  // greet() {
+  //   return `HELLO FROM ${this.name}!`
   // }
-}
 
-// lets try and call Color without the "new" and we get nothing back
-// Color(255, 0, 0)
+  // cause rgb and rgba are similar lets dry code
+  innerRGB() {
+    const { r, g, b } = this;
+    return `${r},${g},${b}`
+  }
 
+  // CALL METHOD WITHIN THE SAME METHOD/CLASS
+  rgb() {
+    // this is how we call a func thats within 
+    return `rgb(${this.innerRGB()})`
+  }
 
-// WE HAVE TO CALL "NEW" OR ELSE IT WONT WORK
-// 1 ADDING "NEW" CREATES A NEW JS OBJECT
-// 2 LINKS HTE OBJECT OT THE OTHER OBJECT
-// 3 PASSES NEWLY CREATES OBJECT FROM SETP1
-// const fav = new Color(244, 23, 1)
+  rgba(a = 1.0) {
+    return `rgba(${this.innerRGB()}, ${a})`
+  }
 
-
-// SINCE IT CREATES A CONSTRUCTOR IT MEANS WE CAN ADD METHODS TO THE PROTOTYPE NOW UNLIKE BEFORE WHERE === WAS FALSE CAUSE IT WASNT THE SAME OR NOT ALL HAD ACCESS TO IT LIKE SLICE()
-
-
-// DOING IT THIS WAY ITS IN THE PROTOTYPE NOW
-Color.prototype.rgb = function () {
-  const { r, g, b } = this;
-  return `rgb(${r},${g},${b})`
-}
-
-// THIS WILL ALSO BE IN __PROTO__... WE STILL HAVE ACCESS TO "THIS" IN THESE FUNCTIONS
-Color.prototype.hex = function () {
-  const { r, g, b } = this;
-  return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)
+  hex() {
+    const { r, g, b } = this;
+    return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)
+  }
 }
 
 
-Color.prototype.rgba = function (a = 1.0) {
-  const { r, g, b, } = this;
-  return `rgba(${r},${g},${b},${a})`
-}
-
-
-// we now have an object that has rgb, it doesnt have the rgb() defined along side its inside the __proto__
-
-const color1 = new Color(40, 250, 70)
-// we can call color2.rgb(), so now its BETTER CAUSE ITS NOT UNIQUE TO ONLY THAT OBJECT CAUSE ITS IN __PROTO__
-color1.rgb() // "rgb(40,50,70)"
-color1.hex() // "#283246"
-
-
-const color2 = new Color(0, 0, 0)
-color2.rgb() // "rgb(0,0,0)"
-color2.hex() // Color {r: 0, g: 0, b: 0}
-
-
-
-
-// NOW LETS VERIFY IF ITS THE SAME CAUSE EARLIER IT FAILED WHEN WE DID IT THE OTHER WAY
-// THEYRE POINTING TO THE SAMETHING
-// color1.hex() === color2.hex() // TRUE
-
-document.body.style.backgroundColor = color1.rgba(0.3)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// create new Color
+const red = new Color(255, 23, 1, 'tomato') // inside constructor and r g b values we passed in
+red.hex() // "#ff1701"
+
+const white = new Color(255, 255, 255, 'white')
+white.hex() // #ffffff
+
+// compare both .hex
+// red.hex === white.hex // true... cause they come from the proto and have the same hex available 
 
 
 
